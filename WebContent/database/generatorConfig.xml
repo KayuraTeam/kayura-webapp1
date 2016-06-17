@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+
+	<classPathEntry location="D:\.m2\repository\mysql\mysql-connector-java\5.1.27\mysql-connector-java-5.1.27.jar" />
+
+	<!-- 数据库 context -->
+	<context id="infoGuardian" targetRuntime="MyBatis3">
+
+		<!-- 注释 -->
+		<commentGenerator>
+			<property name="suppressDate" value="true" />
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+
+		<!-- jdbc连接 -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://localhost:3306/kayura_db" userId="root"
+			password="123456" />
+
+		<!-- 类型转换 -->
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<javaModelGenerator targetPackage="org.kayura.example.po"
+			targetProject="kayura-uasp\src\gen\java">
+			<!-- 是否在当前路径下新加一层schema -->
+			<property name="enableSubPackages" value="false" />
+			<!-- 是否针对string类型的字段在set的时候进行trim调用 -->
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<!-- 生成mapxml文件 -->
+		<sqlMapGenerator targetPackage="org.kayura.example.dao"
+			targetProject="kayura-uasp\src\gen\java">
+			<!-- 是否在当前路径下新加一层schema -->
+			<property name="enableSubPackages" value="false" />
+		</sqlMapGenerator>
+
+		<!-- 生成mapxml对应client，也就是接口dao -->
+		<javaClientGenerator targetPackage="org.kayura.example.dao"
+			targetProject="kayura-uasp\src\gen\java" type="XMLMAPPER">
+			<!-- 是否在当前路径下新加一层schema -->
+			<property name="enableSubPackages" value="false" />
+		</javaClientGenerator>
+
+		<!-- 配置表信息 -->
+		<table tableName="example_employees" domainObjectName="Employee"
+			schema="" catalog="" enableCountByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			enableUpdateByExample="false">
+		</table>
+		<table tableName="example_categories" domainObjectName="Category"
+			schema="" catalog="" enableCountByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			enableUpdateByExample="false">
+		</table>
+		<table tableName="example_customers" domainObjectName="Customer"
+			schema="" catalog="" enableCountByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			enableUpdateByExample="false">
+		</table>
+		<table tableName="example_shippers" domainObjectName="Shipper"
+			schema="" catalog="" enableCountByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			enableUpdateByExample="false">
+		</table>
+		<table tableName="example_suppliers" domainObjectName="Supplier"
+			schema="" catalog="" enableCountByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			enableUpdateByExample="false">
+		</table>
+		<table tableName="example_products" domainObjectName="Product"
+			schema="" catalog="" enableCountByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			enableUpdateByExample="false">
+		</table>
+		<table tableName="example_orders" domainObjectName="Order"
+			schema="" catalog="" enableCountByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			enableUpdateByExample="false">
+		</table>
+		<table tableName="example_orderdetails" domainObjectName="OrderDetail"
+			schema="" catalog="" enableCountByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			enableUpdateByExample="false">
+		</table>
+
+	</context>
+</generatorConfiguration>
