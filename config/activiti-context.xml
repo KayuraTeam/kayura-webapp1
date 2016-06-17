@@ -11,6 +11,9 @@
     <property name="enableDatabaseEventLogging" value="true" />
     <property name="activityFontName" value="宋体" />
     <property name="labelFontName" value="宋体" />
+    <property name="formTypes">
+    	<bean class="org.kayura.activiti.form.CustomFormTypes" />
+    </property>
     <property name="customFormTypes">
       <list>
       	<bean class="org.kayura.activiti.form.DateTimeFormType" />
