@@ -3,7 +3,6 @@
 <k:datagrid id="tg" fit="true" rownumbers="true" border="false" 
 	pagination="true" pageSize="10" singleSelect="true" striped="true"
 	toolbar="#tb" idField="id" url="${root}/bpm/task/find.json">
-	<k:column field="ck" checkbox="true" />
 	<k:column field="name" title="任务名称" />
 	<k:column field="processInstanceId" title="过程实例Id" />
 	<k:column field="processDefinitionId" title="过程定义Id" />

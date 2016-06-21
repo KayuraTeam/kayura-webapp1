@@ -15,18 +15,55 @@
 		js/juasp-easyui.js
 	</k:resources>
 	</div>
+	<style type="text/css">
+		.panel-body { overflow: hidden; }
+	</style>
 	<script type="text/javascript">
-	$(function(){
-		jeasyui.genThemeList("themeList", "${root}");
-		juasp.openTab('首页', '${root}/portal', 'icon-home', false);
-	});
+		$(function(){
+			
+			var idMenus = $('#idMenus').menubutton({ menu: '#mm1' });
+			$(idMenus.menubutton('options').menu).menu({
+	            onClick: function (item) {
+	            	var oldId = $("#aliveIdentityId").val();
+ 	            	if(oldId != item.name) {
+	 	    			juasp.post("${root}/identity/set.json", { "i": item.name }, {
+		    				success: function(r){
+		    					window.location.href = '${root}';
+		    				}
+		    			});
+	            	}
+	            }
+			});
+			
+			jeasyui.genThemeList("themeList", "${root}");
+			juasp.openTab('首页', '${root}/portal', 'icon-home', false);
+		});
+		
+		function switchIdentity(id){
+		}
 	</script>
 </head>
 <k:body layout="true">
-	<k:dock region="north" style="height: 50px">
-		<h3 style="padding-left: 10px; float: left;">统一应用支撑平台</h3>
-		<div style="padding: 15px; float: right;">
-			欢迎：${loginName} <a href="${root}/logout" style="margin-left: 10px;">注销</a>		
+	<k:dock region="north" style="height:50px;">
+		<div style="padding-left:10px; float: left;">
+			<h3>统一应用支撑平台</h3>
+		</div>
+		<div style="margin-left:15px; float: left;">
+			<a href="#" class="easyui-menubutton" style="height: 48px;" data-options="menu:'#mm3'">主菜单</a>
+			<div id="mm3" class="menu-content" style="background:#f0f0f0;padding:10px;text-align:left">
+				<img src="http://www.jeasyui.com/images/logo1.png" style="width:150px;height:50px">
+				<p style="font-size:14px;color:#444;">Try jQuery EasyUI to build your modern, interactive, javascript applications.</p>
+			</div>
+		</div>
+		<div style="float: right;">
+			<k:hidden id="aliveIdentityId" value="${identityId}"/>
+			<a id="idMenus" href="#" style="height: 48px;" data-options="menu:'#mm1'">${loginName}（${identityName}）</a>
+			<k:linkbutton href="${root}/logout" style="height: 48px;width:60px" plain="true">注销</k:linkbutton>
+		</div>
+		<div id="mm1">
+			<c:forEach var="idt" items="${identities}">
+				<div data-options="name:'${idt.key}'">${idt.value.displayName}</div>
+			</c:forEach>
 		</div>
 	</k:dock>
 	<k:dock region="south" style="height: 35px">

@@ -120,17 +120,26 @@
 				var rows = $('#tg').datagrid("getSelections");
 				if(rows != null && rows.length > 0){
 					
+					var type = "";
+					if(selectedNode != null){
+						type = selectedNode.attributes['type'];
+					}
+					
 					var ids = [], names = [];
 					$.each(rows, function(index, item) {
-						ids.push(item.id);
+						if(type == "0") {
+							ids.push(item.id);
+						} else if(type == "1" || type == "2"){
+							ids.push(item.deploymentId);
+						}
 						names.push(item.name + ":" + item.version);
 					});
 
-					juasp.confirm("<b>是否确认流程</b> 【" + names.join(", ") + "】<b> " + ids.length + " 个文件。</b>", 
+					juasp.confirm("<b>是否确认流程定义</b> 【" + names.join(", ") + "】<b> " + ids.length + " 个文件。注意：启动的实例也将一并删除。</b>", 
 						function(r) {
 							if (r == true) {
 								juasp.post('${root}/bpm/proc/remove.json', 
-										{ ids : ids.join(",") },
+										{ t : type, ids : ids.join(",") },
 										{ success : function(r) { _search(); } }
 								);
 							}

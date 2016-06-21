@@ -96,15 +96,15 @@
 		pagination="true" pageSize="10" striped="true"
 		toolbar="#tb" idField="employeeId">
 		<k:column field="ck" checkbox="true" />
-		<k:column field="code" width="100" title="工号" />
-		<k:column field="name" width="120" title="姓名" />
-		<k:column field="sexName" width="60" align="center" title="性别" />
-		<k:column field="birthDay" width="120" align="center" title="生日" />
-		<k:column field="phone" width="140" title="分机号" />
-		<k:column field="mobile" width="140" title="手机号" />
-		<k:column field="email" width="140" title="电子邮箱" />
-		<k:column field="userId" width="140" align="center" title="登录账号" formatter="jctx.formaterUser" />
-		<k:column field="statusName" width="60" align="center" title="状态" />
+		<k:column field="code" title="工号" />
+		<k:column field="name" title="姓名" />
+		<k:column field="sexName" align="center" title="性别" />
+		<k:column field="birthDay" align="center" title="生日" />
+		<k:column field="phone" title="分机号" />
+		<k:column field="mobile" title="手机号" />
+		<k:column field="email" title="电子邮箱" />
+		<k:column field="userId" align="center" title="登录账号" formatter="jctx.formaterUser" />
+		<k:column field="statusName" align="center" title="状态" />
 	</k:datagrid>
 	<div id="tb">
 		<k:linkbutton id="add" iconCls="icon-add" plain="true" text="新增账号" onClick="jctx.newEmployee()" />

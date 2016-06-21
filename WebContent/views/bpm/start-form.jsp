@@ -5,7 +5,7 @@
 </k:section>
 
 <k:section name="body">
-	<h2>启动流程 — [${model.processDefinition.name}]，版本号：${model.processDefinition.version} </h2>
+	<h2>启动流程 — [${model.processDefinition.name}]，版本号：${model.processDefinition.version}</h2>
 	<k:form id="ff" url="${root}/bpm/proc/start.json" success="(data){ juasp.closeWin(1) }">
 		<k:hidden id="processDefinitionId" value="${model.processDefinition.id}" />
 		<k:autoform formAttributes="${props}"/>

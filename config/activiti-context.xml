@@ -6,11 +6,10 @@
   <bean id="processEngineConfiguration" class="org.activiti.spring.SpringProcessEngineConfiguration">
   	<property name="dataSource" ref="dataSource" />
   	<property name="transactionManager" ref="transactionManager" />
-  	<property name="databaseSchemaUpdate" value="true" />
-  	<property name="jobExecutorActivate" value="true" />
+  	<property name="databaseSchemaUpdate" value="false" />
+  	<property name="jobExecutorActivate" value="false" />
+  	<property name="dbIdentityUsed" value="false" />
     <property name="enableDatabaseEventLogging" value="true" />
-    <property name="activityFontName" value="宋体" />
-    <property name="labelFontName" value="宋体" />
     <property name="formTypes">
     	<bean class="org.kayura.activiti.form.CustomFormTypes" />
     </property>
@@ -20,6 +19,13 @@
       	<bean class="org.kayura.activiti.form.TimeFormType" />
       	<bean class="org.kayura.activiti.form.DateFormType" />
       	<bean class="org.kayura.activiti.form.TextFormType" /> 
+      </list>
+    </property>
+    <property name="customSessionFactories">
+      <list>
+      	<bean class="org.kayura.activiti.persistence.GroupEntityManagerFactory" />
+      	<bean class="org.kayura.activiti.persistence.MembershipEntityManagerFactory" />
+      	<bean class="org.kayura.activiti.persistence.UserEntityManagerFactory" />
       </list>
     </property>
   </bean>
