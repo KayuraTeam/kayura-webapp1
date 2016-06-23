@@ -2,7 +2,7 @@
 jctx = (function(win, $) {
 	
 	var selectNode = null;
-	var rootPath = "";
+	var ROOTPATH = "";
 	var isInit = true;
 	var isfirst = true;
 	var actions = {
@@ -14,10 +14,10 @@ jctx = (function(win, $) {
 	
 	function _init(path){
 		
-		rootPath = path;
+		ROOTPATH = path;
 		
 		$('#tv').tree({
-			url : rootPath + "/org/tree.json",
+			url : ROOTPATH + "/org/tree.json",
 			onClick : function(node) {
 				_clickNode(node);
 			},
@@ -109,7 +109,7 @@ jctx = (function(win, $) {
 		if (isfirst) {
 
 			$('#tg').datagrid({
-				url : rootPath + "/org/find.json",
+				url : ROOTPATH + "/org/find.json",
 				queryParams : {
 					"id" : id
 				},
@@ -133,7 +133,7 @@ jctx = (function(win, $) {
 	
 	function _editCompany(id){
 		
-		var url = rootPath + "/org/company";
+		var url = ROOTPATH + "/org/company";
 		
 		if(juasp.isEmpty(id)) {
 			var pid = "";
@@ -187,7 +187,7 @@ jctx = (function(win, $) {
 	
 	function _editDepart(id){
 		
-		var url = rootPath + "/org/depart";
+		var url = ROOTPATH + "/org/depart";
 		
 		if(juasp.isEmpty(id)) {
 			var pid = selectNode.id;
@@ -239,7 +239,7 @@ jctx = (function(win, $) {
 	
 	function _editPosition(id){
 		
-		var url = rootPath + "/org/position";
+		var url = ROOTPATH + "/org/position";
 		
 		if(juasp.isEmpty(id)) {
 			var pid = selectNode.id;
@@ -291,7 +291,7 @@ jctx = (function(win, $) {
 	
 	function _editIdentity(id){
 
-		var url = rootPath + "/org/identity";
+		var url = ROOTPATH + "/org/identity";
 		
 		if(juasp.isEmpty(id)) {
 			var pid = selectNode.id;
@@ -356,7 +356,7 @@ jctx = (function(win, $) {
 					var type = selectNode.attributes.type;
 					var id = selectNode.id;
 					
-					juasp.post(rootPath + "/org/remove.json", { id: id, t: type }, {
+					juasp.post(ROOTPATH + "/org/remove.json", { id: id, t: type }, {
 						success: function(r) {
 							var parentNode = $('#tv').tree('getParent', selectNode.target);
 							$('#tv').tree('remove', selectNode.target);
@@ -370,6 +370,26 @@ jctx = (function(win, $) {
 		}
 	}
 	
+	function _importEmployee(){
+		
+		var pid = selectNode.id;
+		var type = selectNode.attributes.type;
+		
+		juasp.selectEmployee({
+			onClose : function(r){
+				if(r.result == 1){
+					juasp.post(ROOTPATH + "/org/identity/import.json", 
+							{ "pid": pid, "t": type, "empid": r.data.employeeId }, 
+							{ success: function(r){
+									_findItems(selectNode.id);
+							  }
+							});
+					
+				}
+			}
+		});
+	}
+	
 	return {
 		init : _init,
 		search : _search,
@@ -378,7 +398,8 @@ jctx = (function(win, $) {
 		addCompany : _addCompany,
 		addDepart : _addDepart,
 		addPosition : _addPosition,
-		addIdentity : _addIdentity
+		addIdentity : _addIdentity,
+		importEmployee: _importEmployee
 	}
 
 }(window, jQuery));

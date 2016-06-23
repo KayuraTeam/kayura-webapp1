@@ -5,15 +5,34 @@
  * http://www.kayura.org
  */
 
+var juasp = juasp || {};
 
 (function($, win) {
 	
-	var rootPath = juasp.root;
+	var ROOTPATH = juasp.root;
 	
-	juasp.org = {
-		selectionOrg: function() {
+	juasp = $.extend(juasp, {
+		
+		selectOrg: function() {
 			
+		},
+		selectEmployee: function(opts){
+			
+			var _opts = $.extend({
+				singleSelect: true,
+				onClose: function(r) { }
+			}, opts);
+			
+			juasp.openWin({
+				url : ROOTPATH + "/org/employee/select",
+				width : "650px",
+				height : "550px",
+				title : "选择员工",
+				onClose : function(r) {
+					_opts.onClose(r);
+				}
+			});
 		}
-	};
+	});
 	
 }(jQuery, window));

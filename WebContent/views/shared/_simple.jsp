@@ -12,6 +12,7 @@
 		easyui/easyui-lang-zh_CN.js
 		js/juasp-core.js
 		js/juasp-easyui.js
+		js/juasp-mods.js
 	</k:resources>
 	<k:renderSection name="head" />
 </head>

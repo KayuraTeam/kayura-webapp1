@@ -14,6 +14,8 @@
 
 	<bean class="org.kayura.web.easyui.EasyUISupport" />
 	<bean class="org.kayura.spring.SpringBeanManager" />
+	<bean class="com.fasterxml.jackson.databind.ObjectMapper" />
+	
 	<bean id="storageExecutor" class="org.kayura.uasp.provider.FileUploadProviderImpl">
 		<property name="minSpace" value="${fileUpload.minSpace}" />
 		<property name="tempPath" value="${fileUpload.tempPath}" />

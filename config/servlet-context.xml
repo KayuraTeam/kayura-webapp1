@@ -46,6 +46,7 @@
 		</mvc:interceptor>
 	</mvc:interceptors>
 
-	<context:component-scan base-package="org.kayura.*.controller,org.kayura.activiti.rest.editor" />
+	<context:component-scan base-package="org.kayura.*.controller" />
+	<context:component-scan base-package="org.kayura.activiti.rest.editor" />
 
 </beans:beans>

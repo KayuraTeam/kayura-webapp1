@@ -5,7 +5,7 @@
  * http://www.kayura.org
  */
 
-juasp = {
+var juasp = {
 	version : "0.1.150202",
 	siteUrl : "/"
 };

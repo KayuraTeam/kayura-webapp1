@@ -39,8 +39,6 @@
 			juasp.openTab('首页', '${root}/portal', 'icon-home', false);
 		});
 		
-		function switchIdentity(id){
-		}
 	</script>
 </head>
 <k:body layout="true">
@@ -50,20 +48,24 @@
 		</div>
 		<div style="margin-left:15px; float: left;">
 			<a href="#" class="easyui-menubutton" style="height: 48px;" data-options="menu:'#mm3'">主菜单</a>
-			<div id="mm3" class="menu-content" style="background:#f0f0f0;padding:10px;text-align:left">
-				<img src="http://www.jeasyui.com/images/logo1.png" style="width:150px;height:50px">
-				<p style="font-size:14px;color:#444;">Try jQuery EasyUI to build your modern, interactive, javascript applications.</p>
-			</div>
 		</div>
 		<div style="float: right;">
 			<k:hidden id="aliveIdentityId" value="${identityId}"/>
 			<a id="idMenus" href="#" style="height: 48px;" data-options="menu:'#mm1'">${loginName}（${identityName}）</a>
 			<k:linkbutton href="${root}/logout" style="height: 48px;width:60px" plain="true">注销</k:linkbutton>
 		</div>
-		<div id="mm1">
-			<c:forEach var="idt" items="${identities}">
-				<div data-options="name:'${idt.key}'">${idt.value.displayName}</div>
-			</c:forEach>
+		<div style="visibility: hidden;">
+			<div id="mm3" class="menu-content" style="background:#f0f0f0;padding:10px;text-align:left">
+				<img src="http://www.jeasyui.com/images/logo1.png" style="width:150px;height:50px">
+				<p style="font-size:14px;color:#444;">Try jQuery EasyUI to build your modern, interactive, javascript applications.</p>
+			</div>
+			<div id="mm1">
+				<c:if test="${identities != null}">
+					<c:forEach var="idt" items="${identities}">
+						<div data-options="name:'${idt.key}'">${idt.value.displayName}</div>
+					</c:forEach>
+				</c:if>
+			</div>
 		</div>
 	</k:dock>
 	<k:dock region="south" style="height: 35px">
