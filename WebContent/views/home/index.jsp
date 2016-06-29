@@ -56,7 +56,7 @@
 		</div>
 		<div style="visibility: hidden;">
 			<div id="mm3" class="menu-content" style="background:#f0f0f0;padding:10px;text-align:left">
-				<img src="http://www.jeasyui.com/images/logo1.png" style="width:150px;height:50px">
+				<img src="" style="width:150px;height:50px">
 				<p style="font-size:14px;color:#444;">Try jQuery EasyUI to build your modern, interactive, javascript applications.</p>
 			</div>
 			<div id="mm1">

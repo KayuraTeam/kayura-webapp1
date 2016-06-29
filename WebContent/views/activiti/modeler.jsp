@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="${root}/editor-app/css/style-editor.css">
 
 	<style type="text/css">
+	h1, .h1, h2, .h2, h3, .h3 { margin-bottom: 3px; margin-top: 3px; }
 	.col-xs-3 { width: 14%; }
 	.col-xs-9 { width: 86%; }
 	.wrapper.full { padding: 0 0 0; }
@@ -35,9 +36,11 @@
 	.selected-item-title { font-size: 20px; padding: 5px 0 5px 8px; }
 	.stencil-group > li { font-size: 14px; }
 	.modal .modal-header { min-height: 40px; padding: 5px 5px 5px 15px; }
-	h1, .h1, h2, .h2, h3, .h3 { margin-bottom: 3px; margin-top: 3px; }
 	.modal-footer { margin-top: 0px; padding: 5px 5px 5px; }
 	.form-group { margin-bottom: 5px; }
+	.kis-group-user-grid { border: 1px solid rgb(212,212,212); width: 100%; height: 300px; margin-bottom: 10px; }
+	.modal-dialog.modal-selector-group { width: 670px; }
+	.modal-dialog.modal-selector-user { width: 1000px; }
 	</style>
 	
 	<script type="text/javascript">

@@ -11,11 +11,14 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-	<!-- 扫描指定包内继承自BaseDao的接口，并创建SpringBean对象. -->
+	<!-- 扫描指定包内继承自BaseDao的接口,并创建SpringBean对象 -->
 	<mybatis-spring:scan base-package="org.kayura.example.dao,org.kayura.uasp.dao"
 		factory-ref="sqlSessionFactory" marker-interface="org.kayura.core.BaseDao" />
+	
+	<!-- 扫描 Activiti 数据访问包 -->
+	<mybatis-spring:scan base-package="org.kayura.activiti.dao"	factory-ref="sqlSessionFactory" />
 
-	<!-- 引用外部属性定义文件. -->
+	<!-- 引用外部属性定义文件 -->
 	<bean id="sysProperties"
 		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
 		<property name="fileEncoding" value="UTF-8" />
@@ -30,7 +33,7 @@
 		<property name="properties" ref="sysProperties" />
 	</bean>
 
-	<!-- 定义一个通用数据访问源. -->
+	<!-- 定义一个通用数据访问源 -->
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="${jdbc.driver}" />

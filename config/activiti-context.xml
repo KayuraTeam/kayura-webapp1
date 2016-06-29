@@ -30,6 +30,14 @@
     </property>
   </bean>
   
+  <bean class="org.kayura.activiti.expression.AssignmenteExpr">
+  	<property name="items">
+  		<map>
+  			<entry key="SameDepart" value="发送人部门" />
+  		</map>
+  	</property>
+  </bean>
+  
   <bean id="processEngine" class="org.activiti.spring.ProcessEngineFactoryBean" destroy-method="destroy">
   	<property name="processEngineConfiguration" ref="processEngineConfiguration" />
   </bean>
