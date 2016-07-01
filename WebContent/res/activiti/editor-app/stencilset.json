@@ -138,9 +138,9 @@
     "properties" : [ {
       "id" : "formproperties",
       "type" : "Complex",
-      "title" : "表单属性",
+      "title" : "扩展属性",
       "value" : "",
-      "description" : "定义带有属性列表的表单",
+      "description" : "定义环节扩展属性列表",
       "popular" : true
     } ]
   }, {
