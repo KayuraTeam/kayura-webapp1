@@ -40,6 +40,10 @@ KISBPM.PROPERTY_CONFIG =
         "readModeTemplateUrl": "editor-app/configuration/properties/form-properties-display-template.html",
         "writeModeTemplateUrl": "editor-app/configuration/properties/form-properties-write-template.html"
     },
+    "oryx-extendproperties-complex": {
+        "readModeTemplateUrl": "editor-app/configuration/properties/extend-properties-display-template.html",
+        "writeModeTemplateUrl": "editor-app/configuration/properties/extend-properties-write-template.html"
+    },
     "oryx-executionlisteners-multiplecomplex": {
         "readModeTemplateUrl": "editor-app/configuration/properties/execution-listeners-display-template.html",
         "writeModeTemplateUrl": "editor-app/configuration/properties/execution-listeners-write-template.html"

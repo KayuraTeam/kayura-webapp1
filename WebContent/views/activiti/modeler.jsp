@@ -46,8 +46,9 @@
 	<script type="text/javascript">
 	var ACTIVITI = ACTIVITI || {};
 	ACTIVITI.CONFIG = {
-		'contextRoot' : '${root}',
-	};
+			'contextRoot' : '${root}',
+			'serviceRoot' : '${root}/service/'
+		};
 	</script>
 </head>
 <body>
@@ -116,7 +117,7 @@
 	<script src="${root}/editor-app/libs/angular-scroll_0.5.7/angular-scroll.min.js" type="text/javascript"></script>
 	
 	<!-- Configuration -->
-<!-- 	<script src="${root}/editor-app/app-cfg.js?v=1"></script> -->
+	<script src="${root}/editor-app/app-cfg.js"></script>
 	<script src="${root}/editor-app/editor-config.js" type="text/javascript"></script>
 	<script src="${root}/editor-app/configuration/url-config.js" type="text/javascript"></script>
 	
@@ -141,6 +142,7 @@
 	<script src="${root}/editor-app/configuration/properties-event-listeners-controller.js" type="text/javascript"></script>
 	<script src="${root}/editor-app/configuration/properties-assignment-controller.js" type="text/javascript"></script>
 	<script src="${root}/editor-app/configuration/properties-fields-controller.js" type="text/javascript"></script>
+	<script src="${root}/editor-app/configuration/properties-extend-properties-controller.js" type="text/javascript"></script>
 	<script src="${root}/editor-app/configuration/properties-form-properties-controller.js" type="text/javascript"></script>
 	<script src="${root}/editor-app/configuration/properties-in-parameters-controller.js" type="text/javascript"></script>
 	<script src="${root}/editor-app/configuration/properties-multiinstance-controller.js" type="text/javascript"></script>

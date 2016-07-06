@@ -303,6 +303,7 @@ angular.module('activitiModeler')
                                 'type': property.type(),
                                 'mode': 'read',
                                 'hidden': property.isHidden(),
+                                'selectedShape': selectedShape,
                                 'value': selectedShape.properties[key]
                             };
                             

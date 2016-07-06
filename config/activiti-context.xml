@@ -13,6 +13,12 @@
 		<property name="formTypes">
 			<bean class="org.kayura.activiti.form.FormTypes" />
 		</property>
+		<property name="customDefaultBpmnParseHandlers">
+			<list>
+				<bean class="org.kayura.activiti.bpmn.parser.handler.UserTaskParseExHandler" />
+				<bean class="org.kayura.activiti.bpmn.parser.handler.StartEventParseExHandler" />
+			</list>
+		</property>
 		<property name="customFormTypes">
 			<list>
 				<bean class="org.kayura.activiti.form.DateTimeFormType" />
@@ -24,14 +30,13 @@
 		<property name="customSessionFactories">
 			<list>
 				<bean class="org.kayura.activiti.persistence.GroupEntityManagerFactory" />
-				<bean
-					class="org.kayura.activiti.persistence.MembershipEntityManagerFactory" />
+				<bean class="org.kayura.activiti.persistence.MembershipEntityManagerFactory" />
 				<bean class="org.kayura.activiti.persistence.UserEntityManagerFactory" />
 			</list>
 		</property>
 		<property name="eventListeners">
 			<list>
-				<bean class="org.kayura.activiti.listener.TaskEventListener" />
+				<bean class="org.kayura.activiti.listener.LoggerEventListener" />
 			</list>
 		</property>
 		<property name="expressionManager">
@@ -49,7 +54,7 @@
 		</property>
 	</bean>
 
-	<bean class="org.kayura.activiti.expression.AssignmenteExpr">
+	<bean class="org.kayura.activiti.expression.AssignmenteExpression">
 		<property name="items">
 			<map>
 				<entry key="sameDepartId" value="处理人部门" />

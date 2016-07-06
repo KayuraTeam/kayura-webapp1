@@ -1,25 +1,33 @@
-/*
- * Activiti Modeler component part of the Activiti project
- * Copyright 2005-2014 Alfresco Software, Ltd. All rights reserved.
- * 
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- *
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
-
- * You should have received a copy of the GNU Lesser General Public
- * License along with this library; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
- */
 'use strict';
 
 var ACTIVITI = ACTIVITI || {};
 
-ACTIVITI.CONFIG = {
-	'contextRoot' : '/activiti-explorer/service',
-};
+ACTIVITI.PREDEFINEPROPERTIES = [{
+	packages : ['UserTask'],
+	id: 'need_send_sms',
+	name: '需要发短信通知',
+	type: 'bool',
+	variable: '1',
+	items: null
+}, {
+	packages : ['UserTask'],
+	id: 'required_comment',
+	name: '必需要填写意见',
+	type: 'bool',
+	variable: '1',
+	items: null
+}, {
+	packages : ['UserTask'],
+	id: 'your_name',
+	name: '文本输入测试项',
+	type: 'string',
+	variable: '默认值',
+	items: null
+}, {
+	packages : ['UserTask'],
+	id: 'selected_value',
+	name: '下拉选择测试项',
+	type: 'string',
+	variable: '0',
+	items: [{key:'0',value:'是的'},{key:'1', value:'不是'}]
+}];

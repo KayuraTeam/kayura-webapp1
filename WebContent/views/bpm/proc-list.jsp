@@ -81,7 +81,6 @@
 					onClose : function(r){
 						if(r.result == 1){
 							_search();
-							win.open("${root}/modeler?modelId=" + r.id);
 						}
 					}
 				});
