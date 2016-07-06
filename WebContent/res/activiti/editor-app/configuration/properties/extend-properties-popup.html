@@ -7,31 +7,40 @@
                 <h2>{{'PROPERTY.PROPERTY.EDIT.TITLE' | translate:property}}</h2>
             </div>
             <div class="modal-body">
-            
+                        
 			<ul id="myTab" class="nav nav-tabs">
-				<li class="active">
+				<li ng-class="{ 'true': 'active', 'false': '' } [predefineProperties.size() > 0 ]">
 					<a href="#ext" data-toggle="tab">预设属性</a>
 				</li>
-				<li>
+				<li ng-class="{ 'false': 'active', 'true': '' } [predefineProperties.size() > 0 ]">
 					<a href="#custom" data-toggle="tab">自定义属性</a>
 				</li>
 			</ul>
 			
            	<div class="tab-content">
-          		<div class="tab-pane fade in active" id="ext" style="padding: 10px;">
+           		
+          		<div ng-class="{ 'true': 'tab-pane fade in active', 'false': 'tab-pane' } [predefineProperties.size() > 0 ]" 
+          			id="ext" style="padding: 10px 10px 10px 10px;">
           		
-	            	<div class="form-inline" ng-repeat="item in predefineProperties">
-	          			<label for="{{item.id}}">{{item.name}}</label>
-	          			<span ng-if="item.items == null ">
-	          			<input ng-if="item.type == 'string' " name="{{item.id}}" type="text" class="form-control" ng-model="item.variable" />
-	          			<input ng-if="item.type == 'bool' " name="{{item.id}}" type="checkbox" class="form-control" ng-model="item.variable" ng-true-value="1" ng-false-value="0" />
-	          			</span>
-	          			<select ng-if="item.items != null " name="{{item.id}}" class="form-control" ng-model="item.variable" ng-options="i.key as i.value for i in item.items">
-	          			</select>
-	          		</div>
+          			<span ng-if="predefineProperties.size() > 0">
+		            	<div class="form-inline" ng-repeat="item in predefineProperties">
+		          			<label for="{{item.id}}">{{item.name}}</label>
+		          			<span ng-if="item.items == null ">
+		          			<input ng-if="item.type == 'string' " id="{{item.id}}" name="{{item.id}}" type="text" class="form-control" ng-model="item.variable" />
+		          			<input ng-if="item.type == 'bool' " id="{{item.id}}" name="{{item.id}}" type="checkbox" class="form-control" ng-model="item.variable" ng-true-value="1" ng-false-value="0" />
+		          			</span>
+		          			<select ng-if="item.items != null " id="{{item.id}}" name="{{item.id}}" class="form-control" ng-model="item.variable" ng-options="i.key as i.value for i in item.items">
+		          			</select>
+		          		</div>
+	          		</span>
+	          		
+          			<span ng-if="predefineProperties.size() == 0">
+          				<h3>没有预定义属性项.</h3>
+          			</span>
 	          		
           		</div>
-          		<div class="tab-pane" id="custom" style="padding: 10px;">
+          		<div ng-class="{ 'false': 'tab-pane fade in active', 'true': 'tab-pane' } [predefineProperties.size() > 0 ]" 
+          			id="custom" style="padding: 10px;">
 
 	                <div class="row row-no-gutter">
 	                
