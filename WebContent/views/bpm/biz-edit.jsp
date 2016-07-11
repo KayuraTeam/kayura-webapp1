@@ -2,11 +2,19 @@
 
 <k:section name="title">数据词典管理</k:section>
 <k:section name="head">
+	<k:resource location="res/js" name="jbpm-activiti.js"/>
+	<script type="text/javascript">
+		$(function(){
+
+		});
+	</script>
 </k:section>
 
 <k:section name="body">
-	<k:form id="ff" url="${root}/bpm/biz/save.json" success="(d){ juasp.closeWin(1); }">
+	<k:form id="ff" url="${root}/act/bpm/bizform/save" success="(d){ juasp.closeWin(1); }">
 		<k:hidden id="id" value="${model.id}" />
+		<k:hidden id="tenantId" value="${model.tenantId}" />
+		<div id="bpmnRoot"></div>
 		<table cellpadding="5">
 			<tr>
 				<td>表单编码:</td>

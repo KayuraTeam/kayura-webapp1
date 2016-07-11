@@ -42,10 +42,9 @@ var KisBpmAssignmentPopupCtrl = [ '$http', '$scope', '$modal', function($http, $
 	var findAssignItems = function($http, ids, type, onsuccess){
 		
 		// 选读取群组列表.
-		var getUrl = ACTIVITI.CONFIG.contextRoot + "/bpm/assign/find.json";
-	    $http.get(getUrl, { params: { "t": type, "ids": ids } })
-	    .success(function(r, status, headers) {
-	    	if(onsuccess) onsuccess(r);
+	    $http.get(KISBPM.URL.getAssign(), { params: { "type": type, "ids": ids } })
+	    .success(function(result, status, headers) {
+	    	if(onsuccess) onsuccess(result);
 	    });
 	};
 	
@@ -60,12 +59,12 @@ var KisBpmAssignmentPopupCtrl = [ '$http', '$scope', '$modal', function($http, $
     }
     
     if($scope.assignment.assignee != undefined){
-    	findAssignItems($http, $scope.assignment.assignee, "U", function(r) {
+    	findAssignItems($http, $scope.assignment.assignee, "U", function(result) {
     		
-    		if(r.data != undefined && r.data.length == 1) {
-	        	$scope.assignment.assigneeName = r.data[0].name;
-	        	$scope.assignment.assigneeType = r.data[0].type;
-	        	$scope.assignment.assigneeTypeName = r.data[0].typeName;
+    		if(result != undefined && result.length == 1) {
+	        	$scope.assignment.assigneeName = result[0].name;
+	        	$scope.assignment.assigneeType = result[0].type;
+	        	$scope.assignment.assigneeTypeName = result[0].typeName;
     		}
     	});
     }
@@ -84,18 +83,18 @@ var KisBpmAssignmentPopupCtrl = [ '$http', '$scope', '$modal', function($http, $
 			}
     	}
     	
-    	findAssignItems($http, ids.join(","), "U", function(r){
+    	findAssignItems($http, ids.join(","), "U", function(result){
 
-    		if(r.data != undefined && r.data.length > 0) {
+    		if(result != undefined && result.length > 0) {
     			
 	    		var userItems = [];
-	        	for (var int = 0; int < r.data.length; int++) {
+	        	for (var int = 0; int < result.length; int++) {
 	    			var item = {
-						value: r.data[int].value,
-						name: r.data[int].name,
-						//fullName: r.data[int].name + "（" + r.data[int].typeName + "）",
-						type: r.data[int].type,
-						typeName: r.data[int].typeName
+						value: result[int].value,
+						name: result[int].name,
+						//fullName: result[int].name + "（" + result[int].typeName + "）",
+						type: result[int].type,
+						typeName: result[int].typeName
 	    			};
 	    			userItems.push(item);
 	        	}
@@ -129,18 +128,18 @@ var KisBpmAssignmentPopupCtrl = [ '$http', '$scope', '$modal', function($http, $
 			}
     	}
     	
-    	findAssignItems($http, ids.join(","), "G", function(r){
+    	findAssignItems($http, ids.join(","), "G", function(result){
     		
-    		if(r.data != undefined && r.data.length > 0) {
+    		if(result != undefined && result.length > 0) {
     			
 	    		var groupItems = [];
-	        	for (var int = 0; int < r.data.length; int++) {
+	        	for (var int = 0; int < result.length; int++) {
 	    			var item = {
-						value: r.data[int].value,
-						name: r.data[int].name,
-						//fullName: r.data[int].name + "（" + r.data[int].typeName + "）",
-						type: r.data[int].type,
-						typeName: r.data[int].typeName
+						value: result[int].value,
+						name: result[int].name,
+						//fullName: result[int].name + "（" + result[int].typeName + "）",
+						type: result[int].type,
+						typeName: result[int].typeName
 	    			};
 	    			groupItems.push(item);
 	        	}
@@ -502,10 +501,10 @@ var KisBpmAssignmentSelectorPopupCtrl = [ '$http', '$scope', '$modal', function(
 		// 选读取群组列表.
 		if( $selector.findGroupType != "N" ) {
 			
-		    $http.get(ACTIVITI.CONFIG.contextRoot + "/bpm/group/find.json", 
+		    $http.get(KISBPM.URL.getGroup(), 
 		    	{ params: { "type": $selector.findGroupType, "keyword": $selector.findGroupKeyword } })
-		    .success(function(r, status, headers) {
-		    	$selector.dataGroups = r.data;
+		    .success(function(result, status, headers) {
+		    	$selector.dataGroups = result;
 		    	$selector.gridGroups.selectedItems.splice(0);
 		    });
 		} else {
@@ -517,10 +516,10 @@ var KisBpmAssignmentSelectorPopupCtrl = [ '$http', '$scope', '$modal', function(
 	$selector.findUsers = function(){
 	
 		// 选读取人员列表.
-	    $http.get(ACTIVITI.CONFIG.contextRoot + "/bpm/user/find.json", 
-	    	{ params: { "gid": $selectionItem.groupId, "keyword": $selector.findUserKeyword } })
-	    .success(function(r, status, headers) {
-	    	$selector.dataUsers = r.data;
+	    $http.get(KISBPM.URL.getUser(), 
+	    	{ params: { "groupId": $selectionItem.groupId, "keyword": $selector.findUserKeyword } })
+	    .success(function(result, status, headers) {
+	    	$selector.dataUsers = result;
 	    	$selector.gridUsers.selectedItems.splice(0);
 	    });
 	};

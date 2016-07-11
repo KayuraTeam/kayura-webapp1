@@ -2,22 +2,23 @@
 
 <k:section name="title">创建新流程</k:section>
 <k:section name="head">
+	<k:resource location="res/js" name="jbpm-activiti.js"/>
 	<script type="text/javascript">
-	
 		$(function(){
 			$('#ff').form('submit', {
-				url : '${root}/bpm/proc/new.json',
-				onlySuccess : function(r){
-					juasp.closeWin({result: 1, 'id': r.data});
-				}});
+				url : JBPMN.BPMNROOT + "/model/create",
+				success : function(r){
+					juasp.closeWin({result: 1});
+				}
+			});
 		});
-		
 	</script>
 </k:section>
 
 <k:section name="body">
 	<k:form id="ff">
 		<k:hidden id="key" value="${key}"/>
+		<k:hidden id="tenantId" value="${tenantId}"/>
 		<table cellpadding="5" style="width: 100%">
 			<tr>
 				<td>流程名称:</td>

@@ -211,6 +211,9 @@ var juasp = {
 	juasp.addUrlParam = _addUrlParam;
 	juasp.newId = _newId;
 	juasp.isEmpty = _isEmpty;
+	juasp.isNotEmpty = function(value){
+		return !_isEmpty(value);
+	};
 	juasp.isString = _isString;
 	juasp.bytesToSize = _bytesToSize;
 	
@@ -220,7 +223,138 @@ var juasp = {
 	juasp.SUCCESS = "success";
 	juasp.ERROR = "error";
 	juasp.FAILED = "failed";
+	
+	/**
+	 * 封装的 jquery 组件的 ajax 请求.
+	 * 
+	 * opts: {
+			url: "",
+			type: "POST",
+			data: {},
+			dataType: 'json',
+			ajaxBeforeSend: function() { },
+			ajaxComplete: function(xhr, textStatus) { },
+			ajaxError: function(xhr, textStatus, errorThrown) { },
+			success: function(r) { },
+			failure: function(r) { },
+			error: function(r) { },
+			unknown: function(r) { }
+		}
+	 */
+	function _ajax(opts){
+		
+		var cfg = $.extend({
+			url: "",
+			type: "POST",
+			data: {},
+			dataType: 'json',
+			ajaxBeforeSend: function() { },
+			ajaxComplete: function(xhr, textStatus) { },
+			ajaxDataFilter: function(data, type) { },
+			ajaxError: function(xhr, textStatus, errorThrown) { },
+			success: function(r) {
+				_infoTips(r.message);
+			},
+			failure: function(r) {
+				_errorTips(r.message);
+			},
+			error: function(r) {
+				_alert('ERROR', r.message, 'e');
+			},
+			unknown: function(r) {
+				console.log("调用发生未知错误: " + JSON.stringify(r));
+			}
+		}, opts);
+		
+		$.ajax({
+			url : cfg.url,
+			type : cfg.type,
+			data : cfg.data,
+			dataType : cfg.dataType,
+			beforeSend : function(xhr) {  // 发消命令前事件.
+				if (typeof cfg.ajaxBeforeSend == 'function') {
+					cfg.ajaxBeforeSend(xhr);
+				}
+			},
+			success : function(result, status) {
 
+				// 先执行完成回调事件,根据返回值决定是否执行后续代码
+				if (typeof cfg.complete == 'function') {
+					cfg.complete(result);
+					return;
+				}
+
+				// 系统返回执行异常时的处理,为未预期异常类型
+				if (result.type == 'error') {
+					if (typeof cfg.error == 'function') {
+						cfg.error(result);
+					} else {
+						_errorTips(result.message);
+					}
+				}
+
+				// 处理执行成功时的事件,若未指定事件,将显示一个成功消息
+				else if (result.type == 'success') {
+					if (typeof cfg.success == 'function') {
+						cfg.success(result);
+					} else {
+						_infoTips(result.message);
+					}
+				}
+
+				// 处理执行发生失败时的事件,若未指定事件,将显示一个警告消息
+				else if (result.type == 'failed') {
+					if (typeof cfg.failure == 'function') {
+						cfg.failure(result);
+					} else {
+						_errorTips(result.message);
+					}
+				}
+
+				// 处理未知的请求结果事件
+				if (typeof cfg.unknown == 'function') {
+					cfg.unknown(result);
+				} else {
+					_errorTips(result.message);
+				}
+			},
+			complete : function(xhr, textStatus) { // 调用完成事件.
+				if (typeof cfg.ajaxComplete == 'function') {
+					cfg.ajaxComplete(xhr, textStatus);
+				}
+			},
+			error : function(xhr, textStatus, errorThrown) { // 调用异常事件.
+				if (typeof cfg.ajaxError == 'function') {
+					cfg.ajaxError(xhr, textStatus, errorThrown);
+				}
+			}
+		});
+	}
+
+	function _ajaxGet(opts){
+		_ajax($.extend({
+			type: "GET"
+		}, opts));
+	}
+	
+	function _ajaxPost(opts){
+		_ajax($.extend({
+			type: "POST"
+		}, opts));
+	}
+	
+	function _ajaxPut(opts){
+		_ajax($.extend({
+			type: "PUT"
+		}, opts));
+	}
+	
+	function _ajaxDelete(opts){
+		_ajax($.extend({
+			type: "DELETE"
+		}, opts));
+	}
+	
 	/**
 	 * 以 POST 方式请求一个处理.
 	 * 
@@ -245,7 +379,7 @@ var juasp = {
 			type : "POST",
 			data : cfg.data,
 			dataType : cfg.dataType,
-			beforeSend : function() {
+			beforeSend : function(xhr) {
 				// 发消命令前事件.
 			},
 			success : function(result, status) {
@@ -581,6 +715,11 @@ var juasp = {
 
 	/** 绑定方法 **/
 
+	juasp.ajaxGet = _ajaxGet;
+	juasp.ajaxPost = _ajaxPost;
+	juasp.ajaxPut = _ajaxPut;
+	juasp.ajaxDelete = _ajaxDelete;
+	
 	juasp.post = _post;
 	juasp.skipUrl = _skipUrl;
 	juasp.openTab = _openTab;

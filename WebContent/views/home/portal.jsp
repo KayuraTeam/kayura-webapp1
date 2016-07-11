@@ -12,8 +12,9 @@
 		easyui/easyui-lang-zh_CN.js
 		js/juasp-core.js
 		js/juasp-easyui.js
+		js/jbpm-activiti.js
+		easyui/jquery.portal.js
 	</k:resources>
-	<k:resource location="res" name="easyui/jquery.portal.js"/>
 	<style type="text/css">
 		.panel-body { border-top-width: 0; overflow: hidden; padding: 0; }
 	</style>

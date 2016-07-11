@@ -18,7 +18,7 @@ ACTIVITI.PREDEFINEPROPERTIES = [{
 	items: null
 }, {
 	packages : ['UserTask'],
-	id: 'your_name',
+	id: 'text_value',
 	name: '文本输入测试项',
 	type: 'string',
 	variable: '默认值',

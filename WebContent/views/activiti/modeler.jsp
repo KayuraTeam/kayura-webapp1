@@ -46,8 +46,8 @@
 	<script type="text/javascript">
 	var ACTIVITI = ACTIVITI || {};
 	ACTIVITI.CONFIG = {
-			'contextRoot' : '${root}',
-			'serviceRoot' : '${root}/service/'
+			contextRoot : '${root}',
+			BPMROOT : '${root}/act/bpm/'
 		};
 	</script>
 </head>

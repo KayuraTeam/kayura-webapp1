@@ -16,7 +16,7 @@
 		factory-ref="sqlSessionFactory" marker-interface="org.kayura.core.BaseDao" />
 	
 	<!-- 扫描 Activiti 数据访问包 -->
-	<mybatis-spring:scan base-package="org.kayura.activiti.dao"	factory-ref="sqlSessionFactory" />
+	<mybatis-spring:scan base-package="org.kayura.activiti.repository"	factory-ref="sqlSessionFactory" />
 
 	<!-- 引用外部属性定义文件 -->
 	<bean id="sysProperties"

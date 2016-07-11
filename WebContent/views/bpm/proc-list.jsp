@@ -3,6 +3,7 @@
 <k:section name="title">账号管理</k:section>
 
 <k:section name="head">
+	<k:resource location="res/js" name="jbpm-activiti.js" />
 	<k:resource location="res/js" name="webuploader.css" />
 	<k:resource location="res/js" name="webuploader.min.js" />
 	<k:resource location="res/js" name="juasp-uploader.js" />
@@ -19,22 +20,27 @@
 			function _init() {
 				
 				$('#tv').tree({
-					url : "${root}/bpm/biz/navtree.json",
+					url : JBPMN.BPMNROOT + "bizform/tree?tenantId=${tenantId}",
+					method : "GET",
+					loadFilter : function(r) { 
+						return r;
+					},
 					onClick : function(node) {
 						_clickNode(node);
 					}
 				});
 				
 				$('#tg').datagrid({
-					url: "${root}/bpm/proc/find.json",
+					url: JBPMN.BPMNROOT + "model/find",
+					method : "GET",
 					queryParams: {
-						keyword : $('#search').val()
+						keyword: $('#search').val()
 					}
 				});
 				
 				$("#import").uploader({
 					innerOptions : {
-						server: '${root}/bpm/proc/import.json',
+						server: JBPMN.BPMNROOT + "model/import?tenantId=${tenantId}",
 					},
 					onFinished : function (){
 						_search();
@@ -44,6 +50,9 @@
 			
 			function _clickNode(node){
 				
+				var key = node.attributes['key'];
+				$("#import").uploader("setFormData", { "key" : key });
+
 				selectedNode = node;
 				_search();
 			}
@@ -56,12 +65,11 @@
 					type = selectedNode.attributes['type'];
 				}
 				
-				$("#import").uploader("setFormData", { "key" : key });
-
 				$('#tg').datagrid('unselectAll');
 				$('#tg').datagrid('load', {
+					"tenantId" : "${tenantId}",
 					"key" : key,
-					"t" : type,
+					"type" : type,
 					"keyword" : $('#search').val()
 				});
 			}
@@ -99,50 +107,45 @@
 				var row = $('#tg').datagrid("getSelected");
 				if(row != null){
 					juasp.confirm("<b>是否确认将该流程</b> 【" + row.name + " 】个布署为运行状态。</b>", 
-							function(r) {
-								if (r == true) {
-									juasp.post('${root}/bpm/proc/deploy.json', 
-											{ "modelId" : row.id },
-											{ success : function(r) {
-												juasp.infoTips("流程布署成功。");
-												_search(); 
-											  }
-											}
-									);
+						function(r) {
+							if (r == true) {
+								juasp.ajaxPost({
+									url: JBPMN.BPMNROOT + "model/" + row.id + "/deploy", 
+									ajaxComplete : function(xhr) {
+										juasp.infoTips("流程布署成功。");
+										_search(); 
+									}
+								});
 							}
-					});
-				}
+						}
+					);
+				};
 			}
 			
 			function _remove(){
 				
-				var rows = $('#tg').datagrid("getSelections");
-				if(rows != null && rows.length > 0){
+				var row = $('#tg').datagrid("getSelected");
+				if(row != null){
 					
 					var type = "";
 					if(selectedNode != null){
 						type = selectedNode.attributes['type'];
 					}
 					
-					var ids = [], names = [];
-					$.each(rows, function(index, item) {
-						if(type == "0") {
-							ids.push(item.id);
-						} else if(type == "1" || type == "2"){
-							ids.push(item.deploymentId);
-						}
-						names.push(item.name + ":" + item.version);
-					});
-
-					juasp.confirm("<b>是否确认流程定义</b> 【" + names.join(", ") + "】<b> " + ids.length + " 个文件。注意：启动的实例也将一并删除。</b>", 
+					juasp.confirm("是否确认流程定义【" + row.name + "】记录。注意：启动的实例也将一并删除。", 
 						function(r) {
 							if (r == true) {
-								juasp.post('${root}/bpm/proc/remove.json', 
-										{ t : type, ids : ids.join(",") },
-										{ success : function(r) { _search(); } }
-								);
+								var id = type == 0 ? row.id : row.deploymentId;
+								juasp.ajaxDelete({
+									url: JBPMN.BPMNROOT + "model/" + id + "/" + type + "/remove",
+									ajaxComplete : function(xhr) {
+										juasp.infoTips("流程删除成功。");
+										_search();
+									}
+								});
 							}
-					});
+						}
+					);
 				}
 			}
 			
@@ -183,7 +186,7 @@
 					status = selectedNode.attributes['type'];
 				}
 				
-				return "<a href='${root}/bpm/proc/res?s=" + status + "&t=1&id=" + row.id + "' target='_blank'>流程图XML</a>";					
+				return "<a href='" + JBPMN.BPMNROOT + "model/" + row.id + "/res?status=" + status + "&type=1' target='_blank'>流程图XML</a>";					
 			}
 			
 			function _formaterDiagram(value, row, index){
@@ -192,8 +195,8 @@
 				if(selectedNode != null){
 					status = selectedNode.attributes['type'];
 				}
-				
-				return "<a href='${root}/bpm/proc/res?s=" + status + "&t=2&id=" + row.id + "' target='_blank'>图像PNG</a>";
+
+				return "<a href='" + JBPMN.BPMNROOT + "model/" + row.id + "/res?status=" + status + "&type=2' target='_blank'>图像PNG</a>";
 			}
 			
 			return {
@@ -211,8 +214,6 @@
 			};
 			
 		}(jQuery, window));
-		
-
 		
 	</script>
 </k:section>

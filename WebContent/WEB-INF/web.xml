@@ -72,7 +72,7 @@
 	</servlet>
 	<servlet-mapping>
 	    <servlet-name>ActivitiModelServlet</servlet-name>
-	    <url-pattern>/service/*</url-pattern>
+	    <url-pattern>/act/service/*</url-pattern>
 	</servlet-mapping>
 	
 	
@@ -88,7 +88,22 @@
 	</servlet>
 	<servlet-mapping>
 	    <servlet-name>ActivitiRestServlet</servlet-name>
-	    <url-pattern>/rest/*</url-pattern>
+	    <url-pattern>/act/rest/*</url-pattern>
+	</servlet-mapping>
+	
+	<!-- Processes activiti-kayura requests -->
+	<servlet>
+	    <servlet-name>ActivitiRestServlet</servlet-name>
+	    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+	    <init-param>
+	        <param-name>contextConfigLocation</param-name>
+	        <param-value>classpath:activiti-kayura.xml</param-value>
+	    </init-param>
+	    <load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>ActivitiRestServlet</servlet-name>
+	    <url-pattern>/act/bpm/*</url-pattern>
 	</servlet-mapping>
 	
 	<!-- Processes application requests -->

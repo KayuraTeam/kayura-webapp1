@@ -8,6 +8,7 @@
 		easyui/themes/icon.css
 		js/juasp.css
 		js/jquery.min.js
+		js/json2.js
 		easyui/jquery.easyui.min.js
 		easyui/easyui-lang-zh_CN.js
 		js/juasp-core.js

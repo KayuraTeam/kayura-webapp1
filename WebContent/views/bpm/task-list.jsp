@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 
-<k:datagrid id="tg" fit="true" rownumbers="true" border="false" 
+<k:datagrid disabledTag="true" id="tg" fit="true" rownumbers="true" border="false" 
 	pagination="true" pageSize="10" singleSelect="true" striped="true"
-	toolbar="#tb" idField="id" url="${root}/bpm/task/find.json">
-	<k:column field="name" title="任务名称" />
+	toolbar="#tb" idField="id" method="GET" >
+	<k:column field="name" title="任务名称" formatter="jtasklist.formaterTitle" />
 	<k:column field="processInstanceId" title="过程实例Id" />
 	<k:column field="processDefinitionId" title="过程定义Id" />
 	<k:column field="createTime" title="创建时间" />
@@ -20,34 +20,30 @@
 
 	var jtasklist = (function($, win){
 
-		function _init(){
-			
-/* 			$('#tg').datagrid({
-				url: "${root}/bpm/task/find.json",
-				queryParams: {
-					keyword : $('#search').val()
-				}
-			}); */
+		function _init(){ 
+			$('#tg').datagrid({
+				url : JBPMN.BPMNROOT + "/task/${userId}/find"
+			});
 		}
 		
-		function _search(){
+		function _search() {
 			$('#tg').datagrid('load', {
 				keyword : $('#search').val()
 			});
 		}
 		
-		function _taskclaim(id){
+		function _taskclaim(id) {
 			
-			juasp.post("${root}/bpm/task/claim.json", { "id": id },
+			juasp.post(JBPMN.BPMNROOT + "task/" + id + "/claim", { userId: "${userId}"},
 			{
-				success: function(r){
+				success: function(r) {
 					juasp.infoTips("任务签收完成.");
 					_search();
 				}
 			});
 		}
 		
-		function _taskread(id){
+		function _taskread(id) {
 			
 			juasp.openWin({
 				url: "${root}/bpm/task/read?id=" + id,
@@ -71,12 +67,17 @@
 			}
 		}
 		
+		function _formaterTitle(value, row, index){
+			return value + "(" + row.variables['reason'] + ")";
+		}
+		
 		return {
 			init: _init,
 			search: _search,
 			taskclaim: _taskclaim,
 			taskread: _taskread,
-			formaterActions: _formaterActions
+			formaterActions: _formaterActions,
+			formaterTitle: _formaterTitle
 		};
 		
 	}(jQuery, window));

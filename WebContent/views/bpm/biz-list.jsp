@@ -3,6 +3,7 @@
 <k:section name="title">表单定义</k:section>
 
 <k:section name="head">
+	<k:resource location="res/js" name="jbpm-activiti.js"/>
 	<script type="text/javascript">
 	
 		$(function(){ 
@@ -14,8 +15,9 @@
 			function _init() {
 				
 				$('#tg').datagrid({
-					url: "${root}/bpm/biz/find.json",
+					url: JBPMN.BPMNROOT + "bizform/find",
 					queryParams: {
+						tenantId : "${tenantId}",
 						keyword : $('#search').val()
 					}
 				});
@@ -24,6 +26,7 @@
 			function _search(){
 				
 				$('#tg').datagrid('load', {
+					tenantId : "${tenantId}",
 					keyword : $('#search').val()
 				});
 			}
@@ -64,22 +67,20 @@
 			
 			function _remove(){
 				
-				var rows = $('#tg').datagrid("getSelections");
-				if(rows != null){
+				var row = $('#tg').datagrid("getSelected");
+				if(row != null){
 					
-					var ids = [], names = [];
-					$.each(rows, function(index, item) {
-						ids.push(item.id);
-						names.push(item.displayName);
-					});
-
-					juasp.confirm("<b>是否确认删除表单定义</b> 【" + names.join(", ") + "】<b> " + ids.length + " 个文件。</b>", 
+					juasp.confirm("是否确认删除表单定义【" + row.displayName + "】的记录。", 
 						function(r) {
 							if (r == true) {
-								juasp.post('${root}/bpm/biz/remove.json', 
-										{ ids : ids.join(",") },
-										{ success : function(r) { _search(); } }
-								);
+								juasp.ajaxDelete({
+									url: JBPMN.BPMNROOT + "bizform/" + row.id + "/remove", 
+									data: { },
+									ajaxComplete : function(xhr){
+										juasp.infoTips(row.displayName + " 删除完成。");
+										_search();
+									}
+								});
 							}
 					});
 				}
@@ -99,7 +100,7 @@
 </k:section>
 
 <k:section name="body">
-	<k:datagrid id="tg" fit="true" rownumbers="true"
+	<k:datagrid id="tg" fit="true" rownumbers="true" method="GET"
 		pagination="true" pageSize="10" singleSelect="true" striped="true"
 		toolbar="#tb" idField="id">
 		<k:column field="ck" checkbox="true" />

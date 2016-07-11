@@ -21,14 +21,26 @@ var KISBPM = KISBPM || {};
 KISBPM.URL = {
 
     getModel: function(modelId) {
-        return ACTIVITI.CONFIG.contextRoot + '/model/' + modelId + '/json';
+        return ACTIVITI.CONFIG.contextRoot + '/act/service/model/' + modelId + '/json';
     },
 
     getStencilSet: function() {
-        return ACTIVITI.CONFIG.contextRoot + '/editor-app/stencilset.json?version=' + Date.now();
+        return ACTIVITI.CONFIG.contextRoot + '/editor-app/stencilset.json';
     },
 
     putModel: function(modelId) {
-        return ACTIVITI.CONFIG.contextRoot + '/model/' + modelId + '/save';
+        return ACTIVITI.CONFIG.contextRoot + '/act/service/model/' + modelId + '/save';
+    },
+    
+    getAssign: function(){
+    	return ACTIVITI.CONFIG.contextRoot + "/act/bpm/assign/find";
+    },
+    
+    getGroup: function(){
+    	return ACTIVITI.CONFIG.contextRoot + "/act/bpm/group/find";
+    },
+    
+    getUser: function(){
+    	return ACTIVITI.CONFIG.contextRoot + "/act/bpm/user/find";
     }
 };
