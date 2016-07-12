@@ -22,7 +22,7 @@
 
 		function _init(){ 
 			$('#tg').datagrid({
-				url : JBPMN.BPMNROOT + "/task/${userId}/find"
+				url : JBPMN.BPMNROOT + "task/${userId}/find"
 			});
 		}
 		
@@ -34,9 +34,9 @@
 		
 		function _taskclaim(id) {
 			
-			juasp.post(JBPMN.BPMNROOT + "task/" + id + "/claim", { userId: "${userId}"},
-			{
-				success: function(r) {
+			juasp.ajaxPost({
+				url: JBPMN.BPMNROOT + "task/" + id + "/${userId}/claim",
+				ajaxComplete: function(r) {
 					juasp.infoTips("任务签收完成.");
 					_search();
 				}

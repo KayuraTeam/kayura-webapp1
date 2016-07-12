@@ -6,7 +6,7 @@
 	<script type="text/javascript">
 		$(function(){
 			$('#ff').form('submit', {
-				url : JBPMN.BPMNROOT + "/model/create",
+				url : JBPMN.BPMNROOT + "model/create",
 				success : function(r){
 					juasp.closeWin({result: 1});
 				}
