@@ -2,8 +2,7 @@
 <beans:beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:mvc="http://www.springframework.org/schema/mvc"
-	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:tx="http://www.springframework.org/schema/tx"
 	default-lazy-init="false"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
@@ -13,10 +12,11 @@
 	<beans:description>
 		该配置文件提供给 Servlet 对象使用.
 	</beans:description>
-	
+
 	<mvc:annotation-driven>
 		<mvc:message-converters>
-			<beans:bean class="org.springframework.http.converter.StringHttpMessageConverter">
+			<beans:bean
+				class="org.springframework.http.converter.StringHttpMessageConverter">
 				<beans:constructor-arg value="UTF-8" />
 			</beans:bean>
 		</mvc:message-converters>
@@ -26,7 +26,8 @@
 	<mvc:resources mapping="/editor-app/**" location="/res/activiti/editor-app/" />
 	<mvc:resources mapping="/views/**/*.js" location="/views/" />
 
-	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<beans:bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
@@ -37,7 +38,7 @@
 		<beans:property name="maxUploadSize" value="1024000000000" />
 	</beans:bean>
 
- 	<mvc:interceptors>
+	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/file/upload**" />
 			<beans:bean class="org.kayura.uasp.servlet.FileUploadInterceptor">

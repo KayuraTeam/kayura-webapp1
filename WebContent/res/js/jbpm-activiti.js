@@ -8,7 +8,7 @@ JBPMN.APPROOT = (function(win){
 	return hostPath + projectName;
 }(window));
 
-JBPMN.BPMNROOT = JBPMN.APPROOT + "/act/bpm/";
-JBPMN.SERVICEROOT = JBPMN.APPROOT + "/act/service/";
-JBPMN.RESTROOT = JBPMN.APPROOT + "/act/rest/";
+JBPMN.BPMNROOT = JBPMN.APPROOT + "/workflow/";
+JBPMN.SERVICEROOT = JBPMN.APPROOT + "/workflow/service/";
+JBPMN.RESTROOT = JBPMN.APPROOT + "/workflow/rest/";
 
