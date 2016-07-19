@@ -3,18 +3,18 @@
 <k:datagrid disabledTag="true" id="tg" fit="true" rownumbers="true" border="false" 
 	pagination="true" pageSize="10" singleSelect="true" striped="true"
 	toolbar="#tb" idField="id" method="GET" >
-	<k:column field="name" title="任务名称" formatter="jtasklist.formaterTitle" />
-	<k:column field="processInstanceId" title="过程实例Id" />
-	<k:column field="processDefinitionId" title="过程定义Id" />
+	<k:column field="title" title="任务标题" formatter="jtasklist.formaterTitle" />
+	<k:column field="name" title="环节名称" />
 	<k:column field="createTime" title="创建时间" />
-	<k:column field="assignee" title="处理人" />
-	<k:column field="id" width="80" title="操作项" align="center" formatter="jtasklist.formaterActions"/>
+	<k:column field="id" title="操作项" align="center" formatter="jtasklist.formaterActions"/>
 </k:datagrid>
 <div id="tb">
-	<k:linkbutton id="deploy" iconCls="icon-add" plain="true" text="上传流程" onClick="" />
-	<div style="float: right;">
-		<k:searchbox id="search" prompt="搜索：任务名称" width="220" height="25" searcher="jtasklist.search" />
-	</div>
+	<k:searchbox menu="#mm" height="25" width="300px" prompt="搜索：任务名称" searcher="jtasklist.search" />
+	<k:menu id="mm" style="width:150px">
+		<k:menuitem name="item1" iconCls="icon-ok">已签收任务</k:menuitem>
+		<k:menuitem name="item2" iconCls="icon-save">未签收任务</k:menuitem>
+		<k:menuitem name="item3" iconCls="icon-cancel">紧急任务</k:menuitem>
+	</k:menu>
 </div>
 <script type="text/javascript">
 
@@ -22,7 +22,7 @@
 
 		function _init(){ 
 			$('#tg').datagrid({
-				url : JBPMN.BPMNROOT + "task/${userId}/find"
+				url : JBPMN.BPMNROOT + "/task/${userId}/find"
 			});
 		}
 		
@@ -35,9 +35,20 @@
 		function _taskclaim(id) {
 			
 			juasp.ajaxPost({
-				url: JBPMN.BPMNROOT + "task/" + id + "/${userId}/claim",
+				url: JBPMN.BPMNROOT + "/task/" + id + "/${userId}/claim",
 				ajaxComplete: function(r) {
 					juasp.infoTips("任务签收完成.");
+					_search();
+				}
+			});
+		}
+		
+		function _taskunclaim(id){
+			
+			juasp.ajaxPost({
+				url: JBPMN.BPMNROOT + "/task/" + id + "/unclaim",
+				ajaxComplete: function(r) {
+					juasp.infoTips("任务反签收完成.");
 					_search();
 				}
 			});
@@ -46,7 +57,7 @@
 		function _taskread(id) {
 			
 			juasp.openWin({
-				url: "${root}/bpm/task/read?id=" + id,
+				url: "${ROOT}/bpm/task/read?id=" + id,
 				width: "550px",
 				height: "600px",
 				title: "处理任务",
@@ -63,18 +74,20 @@
  			if(juasp.isEmpty(row.assignee)){
 				return "<a href='###' onclick=\"jtasklist.taskclaim('"+ row.id + "')\" >签收</a>";
 			} else {
-				return "<a href='###' onclick=\"jtasklist.taskread('"+ row.id + "')\" >处理</a>";
+				return "<a href='###' onclick=\"jtasklist.taskunclaim('"+ row.id + "')\" >反签收</a>" + 
+					 "&nbsp;<a href='###' onclick=\"jtasklist.taskread('"+ row.id + "')\" >处理</a>";
 			}
 		}
 		
 		function _formaterTitle(value, row, index){
-			return value + "(" + row.variables['reason'] + ")";
+			return row.name + "(" + row.variables['reason'] + ")";
 		}
 		
 		return {
 			init: _init,
 			search: _search,
 			taskclaim: _taskclaim,
+			taskunclaim: _taskunclaim,
 			taskread: _taskread,
 			formaterActions: _formaterActions,
 			formaterTitle: _formaterTitle

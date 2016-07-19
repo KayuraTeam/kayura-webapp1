@@ -5,7 +5,7 @@
 
 <!-- 编辑内容区域 body -->
 <k:section name="body">
-	<k:form id="ff" url="${root}/auth/role/save.json" success="(d){ juasp.closeWin(1) }">
+	<k:form id="ff" url="${ROOT}/auth/role/save.json" success="(d){ juasp.closeWin(1) }">
 		<k:hidden id="roleId" value="${model.roleId}"/>
 		<table cellpadding="5">
 			<tr>

@@ -10,7 +10,7 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 	<beans:description>
-		该配置文件提供给 Servlet 对象使用.
+		该配置文件提供给 Kayura Servlet 对象使用.
 	</beans:description>
 
 	<mvc:annotation-driven>

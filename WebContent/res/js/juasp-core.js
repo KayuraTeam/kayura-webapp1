@@ -1,25 +1,40 @@
 /**
  * 统一应用支撑平台脚本库.
  * 
- * Copyright 2015-2015 the original author or authors. HomePage:
- * http://www.kayura.org
+ * Copyright 2015-2015 the original author or authors. 
+ * HomePage: http://www.kayura.org
+ * 
+ * 最后更新时间: 2016/07/19
  */
 
-var juasp = {
-	version : "0.1.150202",
-	siteUrl : "/"
-};
+var juasp = { };
 
 (function($, win, doc) {
 
-	/* 计算站点根路径 */
-	var hostPath = win.location.href.substring(0, win.location.href.indexOf(win.location.pathname));
-	var projectName = win.location.pathname.substring(0, win.location.pathname.substr(1).indexOf('/') + 1);
-	juasp.root = hostPath + projectName;
+	// 计算站点根路径
+	juasp.ROOT = (function(win){
+		var hostPath = win.location.href.substring(0, win.location.href.indexOf(win.location.pathname));
+		var projectName = win.location.pathname.substring(0, win.location.pathname.substr(1).indexOf('/') + 1);
+		return hostPath + projectName;
+	}(win));
 
-	/* 如果当前框架是顶层，就创建缓存对象 */
+	// 站点 web 根路径.
+	juasp.APPROOT = juasp.ROOT;
+	
+	// 应用 rest 根路径.
+	juasp.RESTROOT = juasp.ROOT + "/rest";
+	
+	// 如果当前框架是顶层，就创建缓存对象.
+	var $cache = null;
 	if (win == win.top) {
-		win.cache = new ClassMap();
+		$cache = new ClassMap();
+		win.$cache = $cache;
+	} else {
+		if(win.top.$cache == undefined){
+			$cache = new ClassMap();
+		} else {
+			$cache = win.top.$cache;
+		}
 	}
 
 	/**
@@ -107,7 +122,7 @@ var juasp = {
 	 */
 	function _getCache(key, newValue) {
 
-		var value = _getTop().cache.get(key);
+		var value = $cache.get(key);
 
 		if ('undefined' != typeof newValue) {
 			_removeCache(key);
@@ -127,7 +142,7 @@ var juasp = {
 	 */
 	function _setCache(key, value) {
 
-		_getTop().cache.set(key, value);
+		$cache.set(key, value);
 	}
 
 	/**
@@ -137,7 +152,7 @@ var juasp = {
 	 */
 	function _removeCache(key) {
 
-		_getTop().cache.removeKey(key);
+		$cache.removeKey(key);
 	}
 
 	/**
@@ -172,6 +187,11 @@ var juasp = {
 	function _isEmpty(value) {
 
 		return value == undefined || value == null || value == "";
+	}
+	
+	function _isNotEmpty(value){
+		
+		return _isEmpty(value) == false;
 	}
 	
 	function _isString(value) {
@@ -211,9 +231,7 @@ var juasp = {
 	juasp.addUrlParam = _addUrlParam;
 	juasp.newId = _newId;
 	juasp.isEmpty = _isEmpty;
-	juasp.isNotEmpty = function(value){
-		return !_isEmpty(value);
-	};
+	juasp.isNotEmpty = _isNotEmpty;
 	juasp.isString = _isString;
 	juasp.bytesToSize = _bytesToSize;
 	
@@ -251,7 +269,9 @@ var juasp = {
 			ajaxBeforeSend: function() { },
 			ajaxComplete: function(xhr, textStatus) { },
 			ajaxDataFilter: function(data, type) { },
-			ajaxError: function(xhr, textStatus, errorThrown) { },
+			ajaxError: function(xhr, textStatus, errorThrown) {
+				console.log("url: " + opts.url +" . error: " + JSON.stringify(xhr));
+			},
 			success: function(r) {
 				_infoTips(r.message);
 			},
@@ -283,39 +303,49 @@ var juasp = {
 					cfg.complete(result);
 					return;
 				}
-
-				// 系统返回执行异常时的处理,为未预期异常类型
-				if (result.type == 'error') {
-					if (typeof cfg.error == 'function') {
-						cfg.error(result);
-					} else {
-						_errorTips(result.message);
-					}
-				}
-
+				
 				// 处理执行成功时的事件,若未指定事件,将显示一个成功消息
-				else if (result.type == 'success') {
+				if (result.success) {
 					if (typeof cfg.success == 'function') {
 						cfg.success(result);
 					} else {
-						_infoTips(result.message);
+						if(result.message) {
+							_infoTips(result.message);
+						}
+					}
+				}
+
+				// 系统返回执行异常时的处理,为未预期异常类型
+				else if (!result.success && result.type == 'error') {
+					if (typeof cfg.error == 'function') {
+						cfg.error(result);
+					} else {
+						if(result.message) {
+							_errorTips(result.message);
+						}
 					}
 				}
 
 				// 处理执行发生失败时的事件,若未指定事件,将显示一个警告消息
-				else if (result.type == 'failed') {
+				else if (!result.success && result.type == 'failed') {
 					if (typeof cfg.failure == 'function') {
 						cfg.failure(result);
 					} else {
-						_errorTips(result.message);
+						if(result.message) {
+							_errorTips(result.message);
+						}
 					}
 				}
 
 				// 处理未知的请求结果事件
-				if (typeof cfg.unknown == 'function') {
-					cfg.unknown(result);
-				} else {
-					_errorTips(result.message);
+				else {
+					if (typeof cfg.unknown == 'function') {
+						cfg.unknown(result);
+					} else {
+						if(result.message) {
+							_errorTips(result.message);
+						}
+					}
 				}
 			},
 			complete : function(xhr, textStatus) { // 调用完成事件.
@@ -332,113 +362,21 @@ var juasp = {
 	}
 
 	function _ajaxGet(opts){
-		_ajax($.extend({
-			type: "GET"
-		}, opts));
+		_ajax($.extend({ type: "GET" }, opts));
 	}
 	
 	function _ajaxPost(opts){
-		_ajax($.extend({
-			type: "POST"
-		}, opts));
+		_ajax($.extend({ type: "POST" }, opts));
 	}
 	
 	function _ajaxPut(opts){
-		_ajax($.extend({
-			type: "PUT"
-		}, opts));
+		_ajax($.extend({ type: "PUT" }, opts));
 	}
 	
 	function _ajaxDelete(opts){
-		_ajax($.extend({
-			type: "DELETE"
-		}, opts));
+		_ajax($.extend({ type: "DELETE" }, opts));
 	}
 	
-	/**
-	 * 以 POST 方式请求一个处理.
-	 * 
-	 * @param {url} 请求处理的地址.
-	 * @param {data} 请求传入的数据.
-	 * @param {events} events 请求的回调事件. 支持: error, complete, success, failure.
-	 */
-	function _post(url, data, events) {
-
-		var cfg = {
-			'url' : url,
-			'data' : data,
-			dataType : 'json'
-		};
-
-		if ('undefined' == typeof events) {
-			events = {};
-		}
-
-		$.ajax({
-			url : cfg.url,
-			type : "POST",
-			data : cfg.data,
-			dataType : cfg.dataType,
-			beforeSend : function(xhr) {
-				// 发消命令前事件.
-			},
-			success : function(result, status) {
-
-				/* 先执行完成回调事件,根据返回值决定是否执行后续代码. */
-				if (typeof events.complete == 'function') {
-					if (!events.complete(result))
-						return;
-				}
-
-				/* 系统返回执行异常时的处理,为未预期异常类型. */
-				if (result.type == 'error') {
-					if (typeof events.error == 'function') {
-						events.error(result);
-					} else {
-						_errorTips(result.message);
-					}
-					return;
-				}
-
-				/* 处理执行成功时的事件,若未指定事件,将显示一个成功消息. */
-				if (result.type == 'success') {
-					if (typeof events.success == 'function') {
-						events.success(result);
-					} else {
-						_infoTips(result.message);
-					}
-					return;
-				}
-
-				/* 处理执行发生失败时的事件,若未指定事件,将显示一个警告消息. */
-				if (result.type == 'failed') {
-					if (typeof events.failure == 'function') {
-						events.failure(result);
-					} else {
-						_errorTips(result.message);
-					}
-					return;
-				}
-
-				/* 处理未知的请求结果事件. */
-				if (typeof events.unknown == 'function') {
-					events.unknown(result);
-				} else {
-					_errorTips(result.message);
-				}
-
-				_errorTips("未知的请求结果类型。");
-				return;
-			},
-			complete : function(xhr, textStatus) {
-				// 调用完成事件.
-			},
-			error : function(xhr, textStatus, errorThrown) {
-				// 调用异常事件.
-			}
-		});
-	}
-
 	/**
 	 * 用于跳转一个指定的URL地址，并可以指定其跳转模式.
 	 * 
@@ -626,17 +564,20 @@ var juasp = {
 	 */
 	function _alert(title, content, icon, fn) {
 
-		if (icon == "e") {
-			icon == "error";
-		} else if (icon == "i") {
-			icon == "info";
-		} else if (icon == "q") {
-			icon == "question";
-		} else if (icon == "w") {
-			icon == "warning";
+		if( _isNotEmpty(content) ) {
+			
+			if (icon == "e") {
+				icon == "error";
+			} else if (icon == "i") {
+				icon == "info";
+			} else if (icon == "q") {
+				icon == "question";
+			} else if (icon == "w") {
+				icon == "warning";
+			}
+	
+			win.top.$.messager.alert(title, content, icon, fn);
 		}
-
-		win.top.$.messager.alert(title, content, icon, fn);
 	}
 
 	function _getTipQueue() {
@@ -651,35 +592,36 @@ var juasp = {
 
 	function _tips(type, content) {
 
-		if (win == win.top) {
-
-			var tipQueue = _getTipQueue();
-
-			if (tipQueue.length > 0) {
-				try {
-					var e = tipQueue[tipQueue.length - 1];
-					e.hide();
-				} catch (e) {
+		if( _isNotEmpty(content) ) {
+			
+			if (win == win.top) {
+	
+				var tipQueue = _getTipQueue();
+				if (tipQueue.length > 0) {
+					try {
+						var e = tipQueue[tipQueue.length - 1];
+						e.hide();
+					} catch (e) { }
 				}
+	
+				var $tip = $top('<div class="juasp-tipsfrom"><span class="juasp-icon juasp-icon-' + type +'"></span><span class="juasp-'
+						+ type + 'tips">' + content + '</span></div>');
+				$tip.appendTo("body");
+	
+				tipQueue.push($tip);
+	
+				setTimeout(function() {
+					var t = tipQueue.shift();
+					if (t != null) {
+						t.fadeOut('slow', function() {
+							t.remove();
+						});
+					}
+				}, 3000);
+			} else {
+	
+				_getTop().tips(type, content);
 			}
-
-			var $tip = $top('<div class="juasp-tipsfrom"><span class="juasp-icon juasp-icon-' + type +'"></span><span class="juasp-'
-					+ type + 'tips">' + content + '</span></div>');
-			$tip.appendTo("body");
-
-			tipQueue.push($tip);
-
-			setTimeout(function() {
-				var t = tipQueue.shift();
-				if (t != null) {
-					t.fadeOut('slow', function() {
-						t.remove();
-					});
-				}
-			}, 3000);
-		} else {
-
-			_getTop().tips(type, content);
 		}
 	}
 
@@ -720,7 +662,6 @@ var juasp = {
 	juasp.ajaxPut = _ajaxPut;
 	juasp.ajaxDelete = _ajaxDelete;
 	
-	juasp.post = _post;
 	juasp.skipUrl = _skipUrl;
 	juasp.openTab = _openTab;
 	juasp.openWin = _openWin;

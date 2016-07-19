@@ -12,7 +12,7 @@
 		function _init(){
 			
 			$('#tg').datagrid({
-				url: "${root}/auth/role/find.json",
+				url: "${ROOT}/auth/role/find.json",
 				queryParams: {
 					keyword : $('#keyword').val()
 				},
@@ -30,7 +30,7 @@
 		function _newRole(){
 			
 			juasp.openWin({
-				url: "${root}/auth/role/new",
+				url: "${ROOT}/auth/role/new",
 				width: "400px",
 				height: "300px",
 				title: "创建新角色",
@@ -49,7 +49,7 @@
 			}
 			if(row != null) {
 				juasp.openWin({
-					url: "${root}/auth/role/edit?id=" + row.roleId,
+					url: "${ROOT}/auth/role/edit?id=" + row.roleId,
 					width: "400px",
 					height: "300px",
 					title: "修改角色",
@@ -71,9 +71,10 @@
 				juasp.confirm("是否删除名称为【 " + row.name + " 】的角色。", 
 					function(r) {
 						if(r == true) {
-							juasp.post('${root}/auth/role/remove.json', 
-								{ id : row.roleId },
-								{ success: function(r){
+							juasp.ajaxPost({
+								url: juasp.APPROOT + '/auth/role/remove.json', 
+								data: { id : row.roleId },
+								success: function(r){
 									var idx = $("#tg").datagrid("getRowIndex", row);
 									$("#tg").datagrid('deleteRow', idx);
 								}

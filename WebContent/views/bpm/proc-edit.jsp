@@ -10,16 +10,16 @@
     html, body, #canvas { height: 100%; padding: 0; }
     #save-button { position: absolute; top: 20px; right: 20px; border: solid 5px green; }
   </style>
-  <link rel="stylesheet" href="${root}/res/bpmn-js/assets/diagram-js.css">
-  <link rel="stylesheet" href="${root}/res/bpmn-js/assets/bpmn-font/css/bpmn-embedded.css">
+  <link rel="stylesheet" href="${ROOT}/res/bpmn-js/assets/diagram-js.css">
+  <link rel="stylesheet" href="${ROOT}/res/bpmn-js/assets/bpmn-font/css/bpmn-embedded.css">
 </head>
 <body>
   <div id="canvas"></div>
   <button id="save-button">保存流程图</button>
   
   <!-- bpmn-js modeler -->"
-  <script src="${root}/res/js/jquery.min.js"></script>
-  <script src="${root}/res/bpmn-js/bpmn-modeler.js"></script>
+  <script src="${ROOT}/res/js/jquery.min.js"></script>
+  <script src="${ROOT}/res/bpmn-js/bpmn-modeler.js"></script>
   
   <!-- application -->
   <script type="text/javascript">
@@ -68,7 +68,7 @@
 		  
 		$.ajax({
 		 	type: "POST", 
-		 	url: "${root}/bpm/proc/res?t=1&id=${id}",
+		 	url: "${ROOT}/bpm/proc/res?t=1&id=${id}",
 		 	success: function(data){
 			  importXML(data);
 			}

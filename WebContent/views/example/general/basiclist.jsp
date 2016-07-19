@@ -10,7 +10,7 @@
 
 		$(function() {
 			$('#dg').datagrid({
-				url : "${root}/example/general/order/find.json",
+				url : "${ROOT}/example/general/order/find.json",
 				onHeaderContextMenu : function(e, field) {
 					e.preventDefault();
 					if (!cmenu) {
@@ -35,7 +35,7 @@
 
 			juasp.openWin({
 				title : "新增表单",
-				url : "${root}/example/general/basicedit",
+				url : "${ROOT}/example/general/basicedit",
 				iconCls : 'icon-edit',
 				width : 800,
 				height : 500,
@@ -74,7 +74,7 @@
 
 <k:section name="code">
 <pre><code class="html">&lt;k:datagrid title="管理列表" style="width:100%;height:auto;" collapsible="true" pagination="true" pageSize="10" 
-	singleSelect="true" url="${root}/example/general/order/find.json" method="get" idField="id"
+	singleSelect="true" url="${ROOT}/example/general/order/find.json" method="get" idField="id"
 	toolbar="#t1,#q1"&gt;
 	&lt;e:columns&gt;
 		&lt;e:column field="ck" checkbox="true" /&gt;

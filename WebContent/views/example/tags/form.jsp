@@ -42,23 +42,23 @@
 			<tr>
 				<td style="width:75px">ComboTree：</td>
 				<td style="width:150px">
-					<k:combotree id="tree1" url="${root}/example/tags/treedata.json" onlyLeafCheck="true" multiple="true" 
+					<k:combotree id="tree1" url="${ROOT}/example/tags/treedata.json" onlyLeafCheck="true" multiple="true" 
 						required="true" cascadeCheck="true" panelWidth="250" panelHeight="350"></k:combotree>
 				</td>
 				<td>
-					&lt;k:combotree id="tree1" url="${root}/example/tags/treedata.json" onlyLeafCheck="true" multiple="true" 
+					&lt;k:combotree id="tree1" url="${ROOT}/example/tags/treedata.json" onlyLeafCheck="true" multiple="true" 
 						required="true" cascadeCheck="true" panelWidth="250" panelHeight="350"&gt;&lt;/k:combotree&gt;
 				</td>
 			</tr>
 			<tr>
 				<td>ComboGrid：</td>
 				<td>
-					<k:combogrid id="grid1" url="${root}/example/general/customer/find.json" idField="id" textField="name"
+					<k:combogrid id="grid1" url="${ROOT}/example/general/customer/find.json" idField="id" textField="name"
 						panelWidth="480" panelHeight="auto" mode="remote" required="true"
 						columns="[[{field:'name',title:'Company Name'},{field:'contactName',title:'Contact Name'}]]"></k:combogrid>
 				</td>
 				<td>
-					&lt;k:combogrid id="grid1" url="${root}/example/general/customer/find.json" idField="id" textField="name"
+					&lt;k:combogrid id="grid1" url="${ROOT}/example/general/customer/find.json" idField="id" textField="name"
 						panelWidth="480" panelHeight="auto" mode="remote" required="true" editable="false"
 						columns="[[{field:'name',title:'Company Name'},{field:'contactName',title:'Contact Name'}]]"&gt;&lt;/k:combogrid&gt;
 				</td>

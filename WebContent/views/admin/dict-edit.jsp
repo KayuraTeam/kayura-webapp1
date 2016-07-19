@@ -5,7 +5,7 @@
 </k:section>
 
 <k:section name="body">
-	<k:form id="ff" url="${root}/admin/dict/save.json" success="function(data){ juasp.closeWin(1) }">
+	<k:form id="ff" url="${ROOT}/admin/dict/save.json" success="function(data){ juasp.closeWin(1) }">
 		<k:hidden id="id" value="${model.id}" />
 		<k:hidden id="dictId" value="${model.dictId}" />
 		<k:hidden id="parentId" value="${model.parentId}" />

@@ -17,18 +17,18 @@ html, body { width: 100%; height: 100%; overflow: hidden; font-size: 12px; }
 </k:section>
 
 <k:section name="body">
-	<form id="loginForm" action="${root}/login" method="post">
+	<form id="loginForm" action="${ROOT}/login" method="post">
 		<input type="hidden" name="tid" value="${tid}" />
 		<div class="login_negative">
 			<div class="login_header" style="height: 100px; position: relative;">
-				<img src='${root}/res/images/login/logo.png' style="position: absolute;" alt="" />
+				<img src='${ROOT}/res/images/login/logo.png' style="position: absolute;" alt="" />
 			</div>
 			<div class="login_shadow">
 				<div class="login_imgshow">
-					<img src="${root}/res/images/login/img1.jpg" />
+					<img src="${ROOT}/res/images/login/img1.jpg" />
 				</div>
 				<div class="login_window">
-					<img src="${root}/res/images/login/icon1.png" />
+					<img src="${ROOT}/res/images/login/icon1.png" />
 					<div style="height:270px; padding: 30px 30px 10px 30px">
 						<div style="margin-bottom: 10px">
 							<k:textbox id="u" required="true" missingMessage="请输入用户名." novalidate="true" 
@@ -44,8 +44,8 @@ html, body { width: 100%; height: 100%; overflow: hidden; font-size: 12px; }
 						<div style="margin-bottom: 10px">
 							<k:textbox id="vcode" required="true" novalidate="true" missingMessage="请输入验证码."
 								style="width:140px;height:30px;padding:8px" prompt="验证码"></k:textbox>
-							<img src="${root}/res/vc" style="width:95px;height:30px;float: right;"
-								onclick="this.src='${root}/res/vc?r=' + Math.random();" title="看不清？点击换一张。"/>
+							<img src="${ROOT}/res/vc" style="width:95px;height:30px;float: right;"
+								onclick="this.src='${ROOT}/res/vc?r=' + Math.random();" title="看不清？点击换一张。"/>
 						</div>
 						</c:if>
 						<div style="margin-bottom: 20px">
@@ -66,9 +66,9 @@ html, body { width: 100%; height: 100%; overflow: hidden; font-size: 12px; }
 			</div>
 			<div style="float: right; margin: 15px">
 				<c:if test="${runMode == 'dev'}">
-				<a href="${root}/login?pin=DB9611E" style="margin-right: 8px">以业务系统方式登录</a>
+				<a href="${ROOT}/login?pin=DB9611E" style="margin-right: 8px">以业务系统方式登录</a>
 				<a href="https://github.com/KayuraTeam" target="_blank" style="margin-right: 8px">Kayura Git</a>
-				<a href="${root}/example/" target="_blank">开发示例库</a>
+				<a href="${ROOT}/example/" target="_blank">开发示例库</a>
 				</c:if>
 			</div>
 		</div>

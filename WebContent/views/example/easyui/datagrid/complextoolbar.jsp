@@ -9,7 +9,7 @@
 	<div style="margin:20px 0;"></div>
 	
 	<k:datagrid title="DataGrid Complex Toolbar" style="width:700px;height:250px" collapsible="true"
-		singleSelect="true" url="${root}/res/easyui/jsondata/datagrid_data1.json" method="get"
+		singleSelect="true" url="${ROOT}/res/easyui/jsondata/datagrid_data1.json" method="get"
 		toolbar="#tb" footer="#ft">
 		<k:columns>
 			<k:column field="itemid" width="80">Item ID</k:column>
@@ -46,7 +46,7 @@
 
 <k:section name="code">
 <pre><code class="html">&lt;e:datagrid title="DataGrid Complex Toolbar" style="width:700px;height:250px" collapsible="true"
-	singleSelect="true" url="${root}/res/easyui/jsondata/datagrid_data1.json" method="get"
+	singleSelect="true" url="${ROOT}/res/easyui/jsondata/datagrid_data1.json" method="get"
 	toolbar="#tb" footer="#ft"&gt;
 	&lt;e:columns&gt;
 		&lt;e:column field="itemid" width="80"&gt;Item ID&lt;/e:column&gt;

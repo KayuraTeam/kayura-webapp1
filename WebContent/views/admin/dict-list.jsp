@@ -33,7 +33,7 @@
 		$(function() {
 			
 			$('#tv').tree({
-				url : "${root}/admin/dict/define.json",
+				url : "${ROOT}/admin/dict/define.json",
 				onClick: function(node){
 					var id = node.id;
 					findItems(node.id);
@@ -55,7 +55,7 @@
 			if(dictId == "") {
 				
 				$('#tg').datagrid({
-					url: "${root}/admin/dict/load.json",
+					url: "${ROOT}/admin/dict/load.json",
 					queryParams: {
 						"dictId": id
 					},
@@ -85,7 +85,7 @@
 		
 		function newDict(){
 			juasp.openWin({
-				url: "${root}/admin/dict/new?id=" + dictId,
+				url: "${ROOT}/admin/dict/new?id=" + dictId,
 				width: "450px",
 				height: "300px",
 				title: "创建词典项",
@@ -108,7 +108,7 @@
 				if(!row.isFixed){
 				</c:if>
 					juasp.openWin({
-						url: "${root}/admin/dict/edit?id=" + row.id,
+						url: "${ROOT}/admin/dict/edit?id=" + row.id,
 						width: "500px",
 						height: "300px",
 						title: "修改词典项",
@@ -136,11 +136,13 @@
 				</c:if>
 					juasp.confirm("是否删除名称为【 " + row.name + " 】的词典项。", function(r) {
 						if(r == true) {
-							juasp.post('${root}/admin/dict/del.json', { id : row.id},
-									{ success: function(r){
-										var idx = $("#tg").datagrid("getRowIndex", row);
-										$("#tg").datagrid('deleteRow', idx);
-									}
+							juasp.ajaxPost({
+								url: juasp.APPROOT + '/admin/dict/del.json', 
+								data: { id : row.id},
+								success: function(r){
+									var idx = $("#tg").datagrid("getRowIndex", row);
+									$("#tg").datagrid('deleteRow', idx);
+								}
 							});
 						}
 					});

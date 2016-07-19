@@ -15,7 +15,7 @@
 			function _init() {
 				
 				$('#tg').datagrid({
-					url: JBPMN.BPMNROOT + "/bizform/find",
+					url: juasp.RESTROOT + "/mockorder/find",
 					queryParams: {
 						tenantId : "${tenantId}",
 						keyword : $('#search').val()
@@ -32,8 +32,9 @@
 			}
 			
 			function _create(){
+				
 				juasp.openWin({
-					url: "${ROOT}/bpm/biz/new",
+					url: juasp.APPROOT + "/mock/order/new",
 					width: "450px",
 					height: "500px",
 					title: "创建表单项",
@@ -51,7 +52,7 @@
 				if(row != null){
 					
 					juasp.openWin({
-						url: "${ROOT}/bpm/biz/edit?id=" + row.id,
+						url: juasp.APPROOT + "/mock/order/edit?id=" + row.id,
 						width: "450px",
 						height: "500px",
 						title: "编辑表单",
@@ -70,11 +71,11 @@
 				var row = $('#tg').datagrid("getSelected");
 				if(row != null){
 					
-					juasp.confirm("是否确认删除表单定义【" + row.displayName + "】的记录。", 
+					juasp.confirm("是否确认删除表单定义【" + row.title + "】的记录。", 
 						function(r) {
 							if (r == true) {
 								juasp.ajaxDelete({
-									url: JBPMN.BPMNROOT + "/bizform/" + row.id + "/remove", 
+									url: juasp.RESTROOT + "/mockorder/" + row.id + "/remove", 
 									data: { },
 									ajaxComplete : function(xhr){
 										juasp.infoTips(row.displayName + " 删除完成。");
@@ -105,10 +106,10 @@
 		toolbar="#tb" idField="id">
 		<k:column field="ck" checkbox="true" />
 		<k:column field="code" title="编码" />
-		<k:column field="displayName" title="显示名" />
-		<k:column field="processKey" title="流程键" />
-		<k:column field="typeName" title="类型" />
-		<k:column field="statusName" title="状态" />
+		<k:column field="title" title="标题" />
+		<k:column field="creatorName" title="创建人" />
+		<k:column field="createTime" title="创建时间" />
+		<k:column field="actions" title="状态" />
 	</k:datagrid>
 	<div id="tb">
 		<k:linkbutton id="newBiz" iconCls="icon-add" plain="true" text="创建表单" onClick="jctx.create()" />

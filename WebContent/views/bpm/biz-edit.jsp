@@ -11,7 +11,7 @@
 </k:section>
 
 <k:section name="body">
-	<k:form id="ff" url="${root}/act/bpm/bizform/save" success="(d){ juasp.closeWin(1); }">
+	<k:form id="ff" url="${ROOT}/act/bpm/bizform/save" success="(d){ juasp.closeWin(1); }">
 		<k:hidden id="id" value="${model.id}" />
 		<k:hidden id="tenantId" value="${model.tenantId}" />
 		<div id="bpmnRoot"></div>

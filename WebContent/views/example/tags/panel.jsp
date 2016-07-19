@@ -9,7 +9,7 @@
 <k:section name="body">
 	<k:layout fit="true">
 		<k:dock region="west" split="true" maxWidth="250" minWidth="120">
-			<k:tree id="tree1" url="${root}/example/tags/treedata.json"></k:tree>
+			<k:tree id="tree1" url="${ROOT}/example/tags/treedata.json"></k:tree>
 		</k:dock>
 		<k:dock region="center">
 			<k:panel title="我是标题" fit="true" border="false" iconCls="icon-save">

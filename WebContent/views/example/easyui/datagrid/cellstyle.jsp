@@ -8,7 +8,7 @@
 	<div style="margin:20px 0;"></div>
 	
 <k:datagrid title="DataGrid Cell Style" style="width:700px;height:auto" collapsible="true"
-	singleSelect="true" url="${root}/res/easyui/jsondata/datagrid_data1.json" method="get">
+	singleSelect="true" url="${ROOT}/res/easyui/jsondata/datagrid_data1.json" method="get">
 	<k:columns>
 		<k:column field="itemid" width="80">Item ID</k:column>
 		<k:column field="productid" width="100">Product</k:column>
@@ -22,7 +22,7 @@
 
 <k:section name="code">
 <pre><code class="html">&lt;e:datagrid title="DataGrid Cell Style" style="width:700px;height:auto" collapsible="true"
-	singleSelect="true" url="${root}/res/easyui/jsondata/datagrid_data1.json" method="get"&gt;
+	singleSelect="true" url="${ROOT}/res/easyui/jsondata/datagrid_data1.json" method="get"&gt;
 	&lt;e:columns&gt;
 		&lt;e:column field="itemid" width="80"&gt;Item ID&lt;/e:column&gt;
 		&lt;e:column field="productid" width="100"&gt;Product&lt;/e:column&gt;

@@ -8,7 +8,7 @@
 		function submitForm() {
 			
 			$('#ff').form('submit', {
-				url : '${root}/file/folder/save.json',
+				url : '${ROOT}/file/folder/save.json',
 				onlySuccess : function(r) {
 					var t =  $("#name").textbox("getValue");
 					juasp.closeWin({result: 1, 'id': r.data.id, text: t});

@@ -12,7 +12,7 @@
 		
 		function _submitForm() {
 			$('#ff').form('submit', {
-				url : '${root}/org/position/save.json',
+				url : '${ROOT}/org/position/save.json',
 				onlySuccess : function(r){
 					var t = $("#name").textbox("getValue");
 					var data = { result: 1, 'id': r.data.id, text: t};

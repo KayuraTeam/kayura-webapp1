@@ -17,7 +17,7 @@
 
 			function _init(){
 				$('#tg').datagrid({
-					url: "${root}/org/employee/find.json",
+					url: "${ROOT}/org/employee/find.json",
 					queryParams: {
 						keyword : $('#keyword').val(),
 						status : $('#status').val()

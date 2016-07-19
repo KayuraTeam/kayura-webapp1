@@ -14,7 +14,7 @@
 			function _init() {
 				
 				$('#tg').datagrid({
-					url: "${root}/bpm/proc/find.json",
+					url: "${ROOT}/bpm/proc/find.json",
 					queryParams: {
 						keyword : $('#search').val()
 					},
@@ -44,7 +44,7 @@
 		
 		function formaterDiagram(value, row, index){
 
-			return "<a href='${root}/bpm/proc/res?t=2&id=" + row.id + "' target='_blank'>"+row.diagramResourceName + "</a>";
+			return "<a href='${ROOT}/bpm/proc/res?t=2&id=" + row.id + "' target='_blank'>"+row.diagramResourceName + "</a>";
 		}
 		
 	</script>

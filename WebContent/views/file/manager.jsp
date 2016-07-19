@@ -11,7 +11,7 @@
 	
 		$(function() {
 			$('#tv').tree({
-				url : "${root}/file/folders.json",
+				url : "${ROOT}/file/folders.json",
 				animate: true,
 				onClick : function(node) {
 					var root = $(this).tree("getRootNode", node);
@@ -51,7 +51,7 @@
 				if(isfirst) {
 					
 					$('#tg').datagrid({
-						url : "${root}/file/find.json",
+						url : "${ROOT}/file/find.json",
 						queryParams : { "folderId" : nodeId },
 						rowStyler: function(index, row){
 							if (row.isBiz){
@@ -85,7 +85,7 @@
 			function _formatterFileName(index, row){
 				
 				var icon = juasp.getIconName(row.postfix);
-				return '<img class="webuploader-fileitem-icon" src="${root}/res/images/types/' + icon + '.png">' + row.fileName;
+				return '<img class="webuploader-fileitem-icon" src="${ROOT}/res/images/types/' + icon + '.png">' + row.fileName;
 			}
 
 			function selectFileIds(){
@@ -216,7 +216,7 @@
 			}
 
 			function _createFolder() {
-				var openUrl = "${root}/file/folder/new?pid=" + selectNode.id
+				var openUrl = juasp.APPROOT + "/file/folder/new?pid=" + selectNode.id
 						+ "&pname=" + selectNode.text;
 				juasp.openWin({
 					url : openUrl,
@@ -244,9 +244,9 @@
 				juasp.confirm("是否删除【 " + selectNode.text + " 】文件夹。",
 						function(r) {
 							if (r == true) {
-								juasp.post('${root}/file/folder/remove.json', {
-									id : selectNode.id
-								}, {
+								juasp.ajaxPost({
+									url: juasp.APPROOT + '/file/folder/remove.json', 
+									data: { id : selectNode.id },
 									success : function(r) {
 										$("#tv").tree("remove", selectNode.target);
 										_initActions();
@@ -264,7 +264,7 @@
 			function _downfile() {
 
 				var ids = selectFileIds();
-				var url = "${root}/file/get?id=" + ids;
+				var url = "${ROOT}/file/get?id=" + ids;
 				win.open(url);
 			}
 
@@ -280,9 +280,9 @@
 				juasp.confirm("<b>是否确认删除</b> 【" + names.join(", ") + "】<b> "
 						+ ids.length + " 个文件。</b>", function(r) {
 					if (r == true) {
-						juasp.post('${root}/file/remove.json', {
-							id : ids.join(",")
-						}, {
+						juasp.ajaxPost({
+							url: juasp.APPROOT + '/file/remove.json', 
+							data: { id : ids.join(",") }, 
 							success : function(r) {
 								_findFiles(selectNode.id);
 							}
@@ -293,7 +293,7 @@
 
 			function _selectFolder(action) {
 
-				var openUrl = "${root}/file/folder/select?sid=" + selectNode.id;
+				var openUrl = "${ROOT}/file/folder/select?sid=" + selectNode.id;
 				juasp.openWin({
 					url : openUrl,
 					width : "350px",
@@ -313,10 +313,9 @@
 
 				var ids = selectFileIds();
 				_selectFolder(function(r) {
-					juasp.post('${root}/file/folder/move.json', {
-						id : ids,
-						folderId : r.data
-					}, {
+					juasp.ajaxPost({
+						url: juasp.APPROOT + '/file/folder/move.json', 
+						data: { id : ids, folderId : r.data },
 						success : function(r) {
 							_findFiles(selectNode.id);
 						}
@@ -328,10 +327,9 @@
 
 				var ids = selectFileIds();
 				_selectFolder(function(r) {
-					juasp.post('${root}/file/folder/copy.json', {
-						id : ids,
-						folderId : r.data
-					}, {
+					juasp.ajaxPost({
+						url: juasp.APPROOT + '/file/folder/copy.json', 
+						data: { id : ids, folderId : r.data },
 						success : function(r) {
 							_findFiles(selectNode.id);
 						}

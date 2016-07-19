@@ -20,7 +20,7 @@
 	</style>
 	<script type="text/javascript">
 		$(function(){
-			//$("#tasklist").attr('src', "${root}/bpm/task/list");
+			//$("#tasklist").attr('src', "${ROOT}/bpm/task/list");
 		});
 	</script>
 </head>
@@ -76,7 +76,7 @@
 			var taskPanel = $('<div/>').appendTo('body');
 			taskPanel.panel({
 				title : '工作任务',
-				href:'${root}/bpm/task/list',
+				href:'${ROOT}/bpm/task/list',
 				height : "300px",
 				closable : true,
 				collapsible : true

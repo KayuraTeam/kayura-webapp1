@@ -45,7 +45,7 @@
 </k:section>
 
 <k:section name="body">
-	<k:tree id="tv" url="${root}/file/folders.json?t=select" animate="true" onClick="(n)jctx.buttonState(n.id);" />
+	<k:tree id="tv" url="${ROOT}/file/folders.json?t=select" animate="true" onClick="(n)jctx.buttonState(n.id);" />
 </k:section>
 
 <k:section name="tool">

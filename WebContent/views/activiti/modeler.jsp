@@ -16,14 +16,14 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-    <link rel="Stylesheet" media="screen" href="${root}/editor-app/libs/ng-grid-2.0.7.min.css" type="text/css"/>
-    <link rel="stylesheet" href="${root}/editor-app/libs/bootstrap_3.1.1/css/bootstrap.min.css"/>
+    <link rel="Stylesheet" media="screen" href="${ROOT}/editor-app/libs/ng-grid-2.0.7.min.css" type="text/css"/>
+    <link rel="stylesheet" href="${ROOT}/editor-app/libs/bootstrap_3.1.1/css/bootstrap.min.css"/>
 
-    <link rel="Stylesheet" media="screen" href="${root}/editor-app/editor/css/editor.css" type="text/css"/>
-    <link rel="stylesheet" href="${root}/editor-app/css/style.css" type="text/css"/>
+    <link rel="Stylesheet" media="screen" href="${ROOT}/editor-app/editor/css/editor.css" type="text/css"/>
+    <link rel="stylesheet" href="${ROOT}/editor-app/css/style.css" type="text/css"/>
 
-	<link rel="stylesheet" href="${root}/editor-app/css/style-common.css">
-    <link rel="stylesheet" href="${root}/editor-app/css/style-editor.css">
+	<link rel="stylesheet" href="${ROOT}/editor-app/css/style-common.css">
+    <link rel="stylesheet" href="${ROOT}/editor-app/css/style-editor.css">
 
 	<style type="text/css">
 	h1, .h1, h2, .h2, h3, .h3 { margin-bottom: 3px; margin-top: 3px; }
@@ -46,8 +46,7 @@
 	<script type="text/javascript">
 	var ACTIVITI = ACTIVITI || {};
 	ACTIVITI.CONFIG = {
-			contextRoot : '${root}',
-			BPMROOT : '${root}/act/bpm/'
+			contextRoot : '${ROOT}'
 		};
 	</script>
 </head>
@@ -84,82 +83,82 @@
 	</div>
 
 	<!--[if lt IE 9]>
-	<script src="${root}/editor-app/libs/es5-shim-15.3.4.5/es5-shim.js"></script>
-	<script src="${root}/editor-app/libs/json3_3.2.6/lib/json3.min.js"></script>
+	<script src="${ROOT}/editor-app/libs/es5-shim-15.3.4.5/es5-shim.js"></script>
+	<script src="${ROOT}/editor-app/libs/json3_3.2.6/lib/json3.min.js"></script>
 	<![endif]-->
 	
-	<script src="${root}/editor-app/libs/jquery_1.11.0/jquery.min.js"></script>
-	<script src="${root}/editor-app/libs/jquery-ui-1.10.3.custom.min.js"></script>
+	<script src="${ROOT}/editor-app/libs/jquery_1.11.0/jquery.min.js"></script>
+	<script src="${ROOT}/editor-app/libs/jquery-ui-1.10.3.custom.min.js"></script>
 	
-	<script src="${root}/editor-app/libs/angular_1.2.13/angular.min.js"></script>
-	<script src="${root}/editor-app/libs/angular_1.2.13/angular-animate.min.js"></script>
-	<script src="${root}/editor-app/libs/bootstrap_3.1.1/js/bootstrap.min.js"></script>
-	<script src="${root}/editor-app/libs/angular-resource_1.2.13/angular-resource.min.js"></script>
-	<script src="${root}/editor-app/libs/angular-cookies_1.2.13/angular-cookies.min.js"></script>
-	<script src="${root}/editor-app/libs/angular-sanitize_1.2.13/angular-sanitize.min.js"></script>
-	<script src="${root}/editor-app/libs/angular-route_1.2.13/angular-route.min.js"></script>
-	<script src="${root}/editor-app/libs/angular-translate_2.4.2/angular-translate.min.js"></script>
-	<script src="${root}/editor-app/libs/angular-translate-storage-cookie/angular-translate-storage-cookie.js"></script>
-	<script src="${root}/editor-app/libs/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
-	<script src="${root}/editor-app/libs/angular-strap_2.0.5/angular-strap.min.js"></script>
-	<script src="${root}/editor-app/libs/angular-strap_2.0.5/angular-strap.tpl.min.js"></script>
-	<script src="${root}/editor-app/libs/momentjs_2.5.1/momentjs.min.js"></script>
+	<script src="${ROOT}/editor-app/libs/angular_1.2.13/angular.min.js"></script>
+	<script src="${ROOT}/editor-app/libs/angular_1.2.13/angular-animate.min.js"></script>
+	<script src="${ROOT}/editor-app/libs/bootstrap_3.1.1/js/bootstrap.min.js"></script>
+	<script src="${ROOT}/editor-app/libs/angular-resource_1.2.13/angular-resource.min.js"></script>
+	<script src="${ROOT}/editor-app/libs/angular-cookies_1.2.13/angular-cookies.min.js"></script>
+	<script src="${ROOT}/editor-app/libs/angular-sanitize_1.2.13/angular-sanitize.min.js"></script>
+	<script src="${ROOT}/editor-app/libs/angular-route_1.2.13/angular-route.min.js"></script>
+	<script src="${ROOT}/editor-app/libs/angular-translate_2.4.2/angular-translate.min.js"></script>
+	<script src="${ROOT}/editor-app/libs/angular-translate-storage-cookie/angular-translate-storage-cookie.js"></script>
+	<script src="${ROOT}/editor-app/libs/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+	<script src="${ROOT}/editor-app/libs/angular-strap_2.0.5/angular-strap.min.js"></script>
+	<script src="${ROOT}/editor-app/libs/angular-strap_2.0.5/angular-strap.tpl.min.js"></script>
+	<script src="${ROOT}/editor-app/libs/momentjs_2.5.1/momentjs.min.js"></script>
 	
-	<script src="${root}/editor-app/libs/ui-utils.min-0.0.4.js" type="text/javascript"></script>
-	<script src="${root}/editor-app/libs/ng-grid-2.0.7-min.js" type="text/javascript"></script>
-	<script src="${root}/editor-app/libs/angular-dragdrop.min-1.0.3.js" type="text/javascript"></script>
-	<script src="${root}/editor-app/libs/mousetrap-1.4.5.min.js" type="text/javascript"></script>
-	<script src="${root}/editor-app/libs/jquery.autogrow-textarea.js" type="text/javascript"></script>
+	<script src="${ROOT}/editor-app/libs/ui-utils.min-0.0.4.js" type="text/javascript"></script>
+	<script src="${ROOT}/editor-app/libs/ng-grid-2.0.7-min.js" type="text/javascript"></script>
+	<script src="${ROOT}/editor-app/libs/angular-dragdrop.min-1.0.3.js" type="text/javascript"></script>
+	<script src="${ROOT}/editor-app/libs/mousetrap-1.4.5.min.js" type="text/javascript"></script>
+	<script src="${ROOT}/editor-app/libs/jquery.autogrow-textarea.js" type="text/javascript"></script>
 	
-	<script src="${root}/editor-app/libs/prototype-1.5.1.js" type="text/javascript"></script>
-	<script src="${root}/editor-app/libs/path_parser.js" type="text/javascript"></script>
+	<script src="${ROOT}/editor-app/libs/prototype-1.5.1.js" type="text/javascript"></script>
+	<script src="${ROOT}/editor-app/libs/path_parser.js" type="text/javascript"></script>
 	
-	<script src="${root}/editor-app/libs/angular-scroll_0.5.7/angular-scroll.min.js" type="text/javascript"></script>
+	<script src="${ROOT}/editor-app/libs/angular-scroll_0.5.7/angular-scroll.min.js" type="text/javascript"></script>
 	
 	<!-- Configuration -->
-	<script src="${root}/editor-app/app-cfg.js"></script>
-	<script src="${root}/editor-app/editor-config.js" type="text/javascript"></script>
-	<script src="${root}/editor-app/configuration/url-config.js" type="text/javascript"></script>
+	<script src="${ROOT}/editor-app/app-cfg.js"></script>
+	<script src="${ROOT}/editor-app/editor-config.js" type="text/javascript"></script>
+	<script src="${ROOT}/editor-app/configuration/url-config.js" type="text/javascript"></script>
 	
-	<script src="${root}/editor-app/editor/i18n/translation_en_us.js" type="text/javascript"></script>
-	<script src="${root}/editor-app/editor/i18n/translation_signavio_en_us.js" type="text/javascript"></script>
-	<script src="${root}/editor-app/editor/oryx.debug.js" type="text/javascript"></script>
+	<script src="${ROOT}/editor-app/editor/i18n/translation_en_us.js" type="text/javascript"></script>
+	<script src="${ROOT}/editor-app/editor/i18n/translation_signavio_en_us.js" type="text/javascript"></script>
+	<script src="${ROOT}/editor-app/editor/oryx.debug.js" type="text/javascript"></script>
 	
-	<script src="${root}/editor-app/app.js"></script>
-	<script src="${root}/editor-app/eventbus.js" type="text/javascript"></script>
+	<script src="${ROOT}/editor-app/app.js"></script>
+	<script src="${ROOT}/editor-app/eventbus.js" type="text/javascript"></script>
 	
-	<script src="${root}/editor-app/editor-controller.js" type="text/javascript"></script>
-	<script src="${root}/editor-app/stencil-controller.js" type="text/javascript"></script>
-	<script src="${root}/editor-app/toolbar-controller.js" type="text/javascript"></script>
-	<script src="${root}/editor-app/header-controller.js" type="text/javascript"></script>
-	<script src="${root}/editor-app/select-shape-controller.js" type="text/javascript"></script>
+	<script src="${ROOT}/editor-app/editor-controller.js" type="text/javascript"></script>
+	<script src="${ROOT}/editor-app/stencil-controller.js" type="text/javascript"></script>
+	<script src="${ROOT}/editor-app/toolbar-controller.js" type="text/javascript"></script>
+	<script src="${ROOT}/editor-app/header-controller.js" type="text/javascript"></script>
+	<script src="${ROOT}/editor-app/select-shape-controller.js" type="text/javascript"></script>
 	
-	<script src="${root}/editor-app/editor-utils.js" type="text/javascript"></script>
-	<script src="${root}/editor-app/configuration/toolbar-default-actions.js" type="text/javascript"></script>
+	<script src="${ROOT}/editor-app/editor-utils.js" type="text/javascript"></script>
+	<script src="${ROOT}/editor-app/configuration/toolbar-default-actions.js" type="text/javascript"></script>
 	
-	<script src="${root}/editor-app/configuration/properties-default-controllers.js" type="text/javascript"></script>
-	<script src="${root}/editor-app/configuration/properties-execution-listeners-controller.js" type="text/javascript"></script>
-	<script src="${root}/editor-app/configuration/properties-event-listeners-controller.js" type="text/javascript"></script>
-	<script src="${root}/editor-app/configuration/properties-assignment-controller.js" type="text/javascript"></script>
-	<script src="${root}/editor-app/configuration/properties-fields-controller.js" type="text/javascript"></script>
-	<script src="${root}/editor-app/configuration/properties-extend-properties-controller.js" type="text/javascript"></script>
-	<script src="${root}/editor-app/configuration/properties-form-properties-controller.js" type="text/javascript"></script>
-	<script src="${root}/editor-app/configuration/properties-in-parameters-controller.js" type="text/javascript"></script>
-	<script src="${root}/editor-app/configuration/properties-multiinstance-controller.js" type="text/javascript"></script>
-	<script src="${root}/editor-app/configuration/properties-out-parameters-controller.js" type="text/javascript"></script>
-	<script src="${root}/editor-app/configuration/properties-task-listeners-controller.js" type="text/javascript"></script>
-	<script src="${root}/editor-app/configuration/properties-sequenceflow-order-controller.js" type="text/javascript"></script>
-	<script src="${root}/editor-app/configuration/properties-condition-expression-controller.js" type="text/javascript"></script>
-	<script src="${root}/editor-app/configuration/properties-signal-definitions-controller.js" type="text/javascript"></script>
-	<script src="${root}/editor-app/configuration/properties-signal-scope-controller.js" type="text/javascript"></script>
-	<script src="${root}/editor-app/configuration/properties-message-definitions-controller.js" type="text/javascript"></script>
-	<script src="${root}/editor-app/configuration/properties-message-scope-controller.js" type="text/javascript"></script>
+	<script src="${ROOT}/editor-app/configuration/properties-default-controllers.js" type="text/javascript"></script>
+	<script src="${ROOT}/editor-app/configuration/properties-execution-listeners-controller.js" type="text/javascript"></script>
+	<script src="${ROOT}/editor-app/configuration/properties-event-listeners-controller.js" type="text/javascript"></script>
+	<script src="${ROOT}/editor-app/configuration/properties-assignment-controller.js" type="text/javascript"></script>
+	<script src="${ROOT}/editor-app/configuration/properties-fields-controller.js" type="text/javascript"></script>
+	<script src="${ROOT}/editor-app/configuration/properties-extend-properties-controller.js" type="text/javascript"></script>
+	<script src="${ROOT}/editor-app/configuration/properties-form-properties-controller.js" type="text/javascript"></script>
+	<script src="${ROOT}/editor-app/configuration/properties-in-parameters-controller.js" type="text/javascript"></script>
+	<script src="${ROOT}/editor-app/configuration/properties-multiinstance-controller.js" type="text/javascript"></script>
+	<script src="${ROOT}/editor-app/configuration/properties-out-parameters-controller.js" type="text/javascript"></script>
+	<script src="${ROOT}/editor-app/configuration/properties-task-listeners-controller.js" type="text/javascript"></script>
+	<script src="${ROOT}/editor-app/configuration/properties-sequenceflow-order-controller.js" type="text/javascript"></script>
+	<script src="${ROOT}/editor-app/configuration/properties-condition-expression-controller.js" type="text/javascript"></script>
+	<script src="${ROOT}/editor-app/configuration/properties-signal-definitions-controller.js" type="text/javascript"></script>
+	<script src="${ROOT}/editor-app/configuration/properties-signal-scope-controller.js" type="text/javascript"></script>
+	<script src="${ROOT}/editor-app/configuration/properties-message-definitions-controller.js" type="text/javascript"></script>
+	<script src="${ROOT}/editor-app/configuration/properties-message-scope-controller.js" type="text/javascript"></script>
 	
-	<script src="${root}/editor-app/configuration/toolbar.js" type="text/javascript"></script>
-	<script src="${root}/editor-app/configuration/toolbar-custom-actions.js" type="text/javascript"></script>
+	<script src="${ROOT}/editor-app/configuration/toolbar.js" type="text/javascript"></script>
+	<script src="${ROOT}/editor-app/configuration/toolbar-custom-actions.js" type="text/javascript"></script>
 	
-	<script src="${root}/editor-app/configuration/properties.js" type="text/javascript"></script>
-	<script src="${root}/editor-app/configuration/properties-custom-controllers.js" type="text/javascript"></script>
+	<script src="${ROOT}/editor-app/configuration/properties.js" type="text/javascript"></script>
+	<script src="${ROOT}/editor-app/configuration/properties-custom-controllers.js" type="text/javascript"></script>
 
 </body>
 </html>

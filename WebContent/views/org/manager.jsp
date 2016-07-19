@@ -3,10 +3,10 @@
 <k:section name="title">文件管理</k:section>
 
 <k:section name="head">
-	<script type="text/javascript" src="${root}/views/org/manager.js"></script>
+	<script type="text/javascript" src="${ROOT}/views/org/manager.js"></script>
 	<script type="text/javascript">
 		$(function() {
-			jctx.init("${root}");
+			jctx.init();
 		});
 	</script>
 </k:section>

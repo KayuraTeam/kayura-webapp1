@@ -16,7 +16,7 @@
 		function _submitForm() {
 			
 			$('#ff').form('submit', {
-				url : '${root}/org/employee/save.json',
+				url : '${ROOT}/org/employee/save.json',
 				onlySuccess : function(r){
 					isSaved = 1;
 					if($("#autoNew").is(':checked')){

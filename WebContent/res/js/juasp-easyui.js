@@ -303,7 +303,7 @@
 		
 		var link = $("#themeLink");
 		if (link != null) {
-			link.attr('href', juasp.root + '/res/easyui/themes/' + theme + '/easyui.css');
+			link.attr('href', juasp.ROOT + '/res/easyui/themes/' + theme + '/easyui.css');
 
 			var ifs = $("iframe");
 			for (var f = 0; f < ifs.length; f++) {
@@ -394,8 +394,8 @@
 	 */
 	function _loadFilter(r) {
 		
-		if(r.type != undefined) {
-			if (r.type == juasp.SUCCESS && r.data != undefined) {
+		if(r.success != undefined) {
+			if (r.success && r.data != undefined) {
 				return r.data;
 			} else {
 				juasp.alert('消息', r.message, 'error');

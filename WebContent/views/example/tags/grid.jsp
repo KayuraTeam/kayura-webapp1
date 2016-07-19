@@ -8,7 +8,7 @@
 <k:section name="body">
 	<k:datagrid id="tg" title="表格" idField="id"
 		queryParams="{name:'fdf'}"
-		url="${root}/example/general/order/find.json" remoteSort="true">
+		url="${ROOT}/example/general/order/find.json" remoteSort="true">
 		<k:column field="ck" checkbox="true" />
 		<k:column field="orderDate" sortable="true">Order Date</k:column>
 		<k:column field="shipViaName" sortable="true">ShipVia</k:column>

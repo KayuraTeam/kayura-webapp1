@@ -26,17 +26,19 @@
 	            onClick: function (item) {
 	            	var oldId = $("#aliveIdentityId").val();
  	            	if(oldId != item.name) {
-	 	    			juasp.post("${root}/identity/set.json", { "i": item.name }, {
+	 	    			juasp.ajaxPost({
+	 	    				url: juasp.APPROOT + "/identity/set.json", 
+	 	    				data: { "i": item.name },
 		    				success: function(r){
-		    					window.location.href = '${root}';
+		    					window.location.href = '${ROOT}';
 		    				}
 		    			});
 	            	}
 	            }
 			});
 			
-			jeasyui.genThemeList("themeList", "${root}");
-			juasp.openTab('首页', '${root}/portal', 'icon-home', false);
+			jeasyui.genThemeList("themeList", "${ROOT}");
+			juasp.openTab('首页', '${ROOT}/portal', 'icon-home', false);
 		});
 		
 	</script>
@@ -52,7 +54,7 @@
 		<div style="float: right;">
 			<k:hidden id="aliveIdentityId" value="${identityId}"/>
 			<a id="idMenus" href="#" style="height: 48px;" data-options="menu:'#mm1'">${loginName}（${identityName}）</a>
-			<k:linkbutton href="${root}/logout" style="height: 48px;width:60px" plain="true">注销</k:linkbutton>
+			<k:linkbutton href="${ROOT}/logout" style="height: 48px;width:60px" plain="true">注销</k:linkbutton>
 		</div>
 		<div style="visibility: hidden;">
 			<div id="mm3" class="menu-content" style="background:#f0f0f0;padding:10px;text-align:left">
@@ -77,27 +79,29 @@
 		<k:accordion fit="true" border="false">
 			<k:sheet collapsed="false" collapsible="false" title="我的工作">
 				<ul>
-					<li><a href="###" onclick="juasp.openTab('首页', '${root}/portal')" >我的主页</a></li>
-					<li><a href="###" onclick="juasp.openTab('账号管理', '${root}/admin/user/list')" >账号管理</a></li>
-					<li><a href="###" onclick="juasp.openTab('数据词典', '${root}/admin/dict/list')" >数据词典</a></li>
-					<li><a href="###" onclick="juasp.openTab('组织机构', '${root}/org/manager')" >组织机构</a></li>
-					<li><a href="###" onclick="juasp.openTab('员工管理', '${root}/org/employee/list')" >员工管理</a></li>
-					<li><a href="###" onclick="juasp.openTab('角色配置', '${root}/auth/role/list')" >角色配置</a></li>
-					<li><a href="###" onclick="juasp.openTab('文件管理', '${root}/file/manager')" >文件管理</a></li>
-					<li><a href="###" onclick="juasp.openTab('文件上传', '${root}/mock/fileup')" >文件上传</a></li>
+					<li><a href="###" onclick="juasp.openTab('首页', '${ROOT}/portal')" >我的主页</a></li>
+					<li><a href="###" onclick="juasp.openTab('账号管理', '${ROOT}/admin/user/list')" >账号管理</a></li>
+					<li><a href="###" onclick="juasp.openTab('数据词典', '${ROOT}/admin/dict/list')" >数据词典</a></li>
+					<li><a href="###" onclick="juasp.openTab('组织机构', '${ROOT}/org/manager')" >组织机构</a></li>
+					<li><a href="###" onclick="juasp.openTab('员工管理', '${ROOT}/org/employee/list')" >员工管理</a></li>
+					<li><a href="###" onclick="juasp.openTab('角色配置', '${ROOT}/auth/role/list')" >角色配置</a></li>
+					<li><a href="###" onclick="juasp.openTab('文件管理', '${ROOT}/file/manager')" >文件管理</a></li>
+					<li><a href="###" onclick="juasp.openTab('文件上传', '${ROOT}/mock/fileup')" >文件上传</a></li>
 				</ul>
 			</k:sheet>
 			<k:sheet collapsed="false" collapsible="false" title="工作流" tools="[{iconCls:'icon-menu',handler:function(){alert('设置');}}]">
 				<ul>
-					<li><a href="###" onclick="juasp.openTab('表单定义', '${root}/bpm/biz/list')" >表单定义</a></li>
-					<li><a href="###" onclick="juasp.openTab('流程定义', '${root}/bpm/proc/list')" >流程定义</a></li>
-					<li><a href="###" onclick="juasp.openTab('实例监控', '${root}/bpm/proc/inst')" >实例监控</a></li>
+					<li><a href="###" onclick="juasp.openTab('任务中心', '${ROOT}/bpm/task/center')" >任务中心</a></li>
+					<li><a href="###" onclick="juasp.openTab('表单定义', '${ROOT}/bpm/biz/list')" >表单定义</a></li>
+					<li><a href="###" onclick="juasp.openTab('流程定义', '${ROOT}/bpm/proc/list')" >流程定义</a></li>
+					<li><a href="###" onclick="juasp.openTab('模拟表单', '${ROOT}/mock/order/list')" >模拟表单</a></li>
+					<li><a href="###" onclick="juasp.openTab('实例监控', '${ROOT}/bpm/proc/inst')" >实例监控</a></li>
 				</ul>
 			</k:sheet>
 			<k:sheet collapsed="false" collapsible="false" title="收藏功能" tools="[{iconCls:'icon-menu',handler:function(){alert('设置');}}]">
 				<ul>
-					<li><a href="###" onclick="juasp.openTab('账号管理', '${root}/admin/user/list')" >账号管理</a></li>
-					<li><a href="###" onclick="juasp.openTab('数据词典', '${root}/admin/dict/list')" >数据词典</a></li>
+					<li><a href="###" onclick="juasp.openTab('账号管理', '${ROOT}/admin/user/list')" >账号管理</a></li>
+					<li><a href="###" onclick="juasp.openTab('数据词典', '${ROOT}/admin/dict/list')" >数据词典</a></li>
 				</ul>
 			</k:sheet>
 		</k:accordion>

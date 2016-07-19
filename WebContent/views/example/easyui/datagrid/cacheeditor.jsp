@@ -10,13 +10,13 @@
 	<k:datagrid id="dg" title="Cache Editor for DataGrid"
 		style="width:700px;height:auto" collapsible="true" singleSelect="true"
 		iconCls="icon-edit"
-		url="${root}/res/easyui/jsondata/datagrid_data1.json"
+		url="${ROOT}/res/easyui/jsondata/datagrid_data1.json"
 		onClickRow="onClickRow" method="get" toolbar="#tb">
 		<k:columns>
 			<k:column field="itemid" width="80">Item ID</k:column>
 			<k:column field="productid" width="100"
 				formatter="function(value,row){return row.productname;}"
-				editor="{type:'combobox',options:{valueField:'productid',textField:'productname',method:'get',url:'${root}/res/easyui/jsondata/products.json',required:true}}">Product</k:column>
+				editor="{type:'combobox',options:{valueField:'productid',textField:'productname',method:'get',url:'${ROOT}/res/easyui/jsondata/products.json',required:true}}">Product</k:column>
 			<k:column field="listprice" width="80" align="right"
 				editor="{type:'numberbox',options:{precision:1}}">List Price</k:column>
 			<k:column field="unitcost" width="80" align="right"
@@ -39,13 +39,13 @@
 <pre><code class="html">&lt;e:datagrid id="dg" title="Cache Editor for DataGrid"
 	style="width:700px;height:auto" collapsible="true" singleSelect="true"
 	iconCls="icon-edit"
-	url="${root}/res/easyui/jsondata/datagrid_data1.json"
+	url="${ROOT}/res/easyui/jsondata/datagrid_data1.json"
 	onClickRow="onClickRow" method="get" toolbar="#tb"&gt;
 	&lt;e:columns&gt;
 		&lt;e:column field="itemid" width="80"&gt;Item ID&lt;/e:column&gt;
 		&lt;e:column field="productid" width="100"
 			formatter="function(value,row){return row.productname;}"
-			editor="{type:'combobox',options:{valueField:'productid',textField:'productname',method:'get',url:'${root}/res/easyui/jsondata/products.json',required:true}}"&gt;Product&lt;/e:column&gt;
+			editor="{type:'combobox',options:{valueField:'productid',textField:'productname',method:'get',url:'${ROOT}/res/easyui/jsondata/products.json',required:true}}"&gt;Product&lt;/e:column&gt;
 		&lt;e:column field="listprice" width="80" align="right"
 			editor="{type:'numberbox',options:{precision:1}}"&gt;List Price&lt;/e:column&gt;
 		&lt;e:column field="unitcost" width="80" align="right"

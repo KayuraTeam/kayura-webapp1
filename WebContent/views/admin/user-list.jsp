@@ -8,7 +8,7 @@
 		$(document).ready(function() {
 			
 			$('#tg').datagrid({
-				url: "${root}/admin/user/find.json",
+				url: "${ROOT}/admin/user/find.json",
 				queryParams: {
 					keyword : $('#keyword').val(),
 					status : $('#status').val()
@@ -34,7 +34,7 @@
 			
 			if(row != null) {
 				juasp.openWin({
-					url: "${root}/admin/user/edit?id=" + row.userId,
+					url: "${ROOT}/admin/user/edit?id=" + row.userId,
 					width: "600px",
 					height: "500px",
 					title: "修改用户资料",
@@ -51,7 +51,7 @@
 		
 		function newUser(){
 			juasp.openWin({
-				url: "${root}/admin/user/new",
+				url: "${ROOT}/admin/user/new",
 				width: "600px",
 				height: "500px",
 				title: "创建用户资料",

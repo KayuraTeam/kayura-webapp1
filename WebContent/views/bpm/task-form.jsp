@@ -6,7 +6,7 @@
 
 <k:section name="body">
 	<h2>处理任务 — [${model.task.name}]</h2>
-	<k:form id="ff" url="${root}/bpm/task/handler.json" success="(data){ juasp.closeWin(1) }">
+	<k:form id="ff" url="${ROOT}/bpm/task/handler.json" success="(data){ juasp.closeWin(1) }">
 		<k:hidden id="id" value="${model.task.id}"/>
 		<k:autoform formAttributes="${props}"/>
 	</k:form>

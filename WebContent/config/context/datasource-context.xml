@@ -13,10 +13,11 @@
 
 	<!-- 扫描指定包内继承自BaseDao的接口,并创建SpringBean对象 -->
 	<mybatis-spring:scan base-package="org.kayura.example.dao,org.kayura.uasp.dao"
-		factory-ref="sqlSessionFactory" marker-interface="org.kayura.core.BaseDao" />
+		factory-ref="sqlSessionFactory" />
 	
 	<!-- 扫描 Activiti 数据访问包 -->
-	<mybatis-spring:scan base-package="org.kayura.activiti.repository"	factory-ref="sqlSessionFactory" />
+	<mybatis-spring:scan base-package="org.kayura.activiti.repository"
+		factory-ref="sqlSessionFactory" />
 
 	<!-- 引用外部属性定义文件 -->
 	<bean id="sysProperties"

@@ -10,7 +10,7 @@
 
 	<k:datagrid title="Column Group" style="width:700px;height:250px"
 		collapsible="true" singleSelect="true" rownumbers="true"
-		url="${root}/res/easyui/jsondata/datagrid_data1.json" method="get">
+		url="${ROOT}/res/easyui/jsondata/datagrid_data1.json" method="get">
 		<thead>
 			<tr>
 				<k:column field="itemid" width="80" rowspan="2">Item ID</k:column>
@@ -30,7 +30,7 @@
 <k:section name="code">
 <pre><code class="html">&lt;e:datagrid title="Column Group" style="width:700px;height:250px"
 	collapsible="true" singleSelect="true" rownumbers="true"
-	url="${root}/res/easyui/jsondata/datagrid_data1.json" method="get"&gt;
+	url="${ROOT}/res/easyui/jsondata/datagrid_data1.json" method="get"&gt;
 	&lt;thead&gt;
 		&lt;tr&gt;
 			&lt;e:column field="itemid" width="80" rowspan="2"&gt;Item ID&lt;/e:column&gt;

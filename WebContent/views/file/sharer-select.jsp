@@ -8,7 +8,7 @@
 		$(function() {
 
 			$('#tg').datagrid({
-				url : "${root}/file/sharer/find.json",
+				url : "${ROOT}/file/sharer/find.json",
 				queryParams : {
 					keyword : $('#keyword').val()
 				}

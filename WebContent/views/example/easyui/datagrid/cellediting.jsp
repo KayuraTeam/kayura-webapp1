@@ -7,7 +7,7 @@
 	<p>Click a cell to start editing.</p>
 	<div style="margin:20px 0;"></div>
 	<k:datagrid id="dg" title="Cell Editing in DataGrid" style="width:700px;height:auto" collapsible="true"
-		iconCls="icon-edit" singleSelect="true" url="${root}/res/easyui/jsondata/datagrid_data1.json" method="get">
+		iconCls="icon-edit" singleSelect="true" url="${ROOT}/res/easyui/jsondata/datagrid_data1.json" method="get">
 		<k:columns>
 			<k:column field="itemid" width="80">Item ID</k:column>
 			<k:column field="productid" width="100" editor="'text'">Product</k:column>
@@ -21,7 +21,7 @@
 
 <k:section name="code">
 <pre><code class="html">&lt;e:datagrid id="dg" title="Cell Editing in DataGrid" style="width:700px;height:200px" collapsible="true"
-	iconCls="icon-edit" singleSelect="true" url="${root}/res/easyui/jsondata/datagrid_data1.json" method="get"&gt;
+	iconCls="icon-edit" singleSelect="true" url="${ROOT}/res/easyui/jsondata/datagrid_data1.json" method="get"&gt;
 	&lt;e:columns&gt;
 		&lt;e:column field="itemid" width="80"&gt;Item ID&lt;/e:column&gt;
 		&lt;e:column field="productid" width="100" editor="'text'"&gt;Product&lt;/e:column&gt;

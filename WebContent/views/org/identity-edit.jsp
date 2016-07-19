@@ -15,7 +15,7 @@
 
 		function _submitForm() {
 			$('#ff').form('submit', {
-				url : '${root}/org/identity/save.json',
+				url : '${ROOT}/org/identity/save.json',
 				onlySuccess : function(r){
 			<c:choose>
 				<c:when test="${empty model.identityId}">

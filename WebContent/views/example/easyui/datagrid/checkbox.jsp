@@ -16,7 +16,7 @@
 	<div style="margin:20px 0;"></div>
 	
 	<k:datagrid id="dg" title="CheckBox Selection on DataGrid" style="width:700px;height:250px"
-		rownumbers="true" singleSelect="true" url="${root}/res/easyui/jsondata/datagrid_data1.json" method="get">
+		rownumbers="true" singleSelect="true" url="${ROOT}/res/easyui/jsondata/datagrid_data1.json" method="get">
 		<k:columns>
 			<k:column field="ck" checkbox="true"></k:column>
 			<k:column field="itemid" width="80">Item ID</k:column>
@@ -42,7 +42,7 @@
 
 <k:section name="code">
 <pre><code class="html">&lt;e:datagrid id="dg" title="CheckBox Selection on DataGrid" style="width:700px;height:250px"
-	rownumbers="true" singleSelect="true" url="${root}/res/easyui/jsondata/datagrid_data1.json" method="get"&gt;
+	rownumbers="true" singleSelect="true" url="${ROOT}/res/easyui/jsondata/datagrid_data1.json" method="get"&gt;
 	&lt;e:columns&gt;
 		&lt;e:column field="ck" checkbox="true"&gt;&lt;/e:column&gt;
 		&lt;e:column field="itemid" width="80"&gt;Item ID&lt;/e:column&gt;

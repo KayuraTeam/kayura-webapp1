@@ -6,7 +6,7 @@
 </k:section>
 
 <k:section name="body">
-	<k:tree id="tree1" url="${root}/example/tags/treedata.json" queryParams="${query}"></k:tree>
+	<k:tree id="tree1" url="${ROOT}/example/tags/treedata.json" queryParams="${query}"></k:tree>
 	<k:tree id="tree2" data="${data}"></k:tree>
 </k:section>
 

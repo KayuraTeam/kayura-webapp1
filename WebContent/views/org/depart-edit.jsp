@@ -13,7 +13,7 @@
 		
 		function _submitForm() {
 			$('#ff').form('submit', {
-				url : '${root}/org/depart/save.json',
+				url : '${ROOT}/org/depart/save.json',
 				onlySuccess : function(r){
 					var t = $("#name").textbox("getValue");
 					var data = {result: 1, 'id': r.data.id, text: t};

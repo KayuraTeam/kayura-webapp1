@@ -14,7 +14,7 @@
 			function _init(){
 
 				$('#tg').datagrid({
-					url: "${root}/org/employee/find.json",
+					url: "${ROOT}/org/employee/find.json",
 					queryParams: {
 						keyword : $('#keyword').val(),
 						status : $('#status').val()
@@ -39,7 +39,7 @@
 				
 				if(row != null) {
 					juasp.openWin({
-						url: "${root}/org/employee/edit?id=" + row.employeeId,
+						url: "${ROOT}/org/employee/edit?id=" + row.employeeId,
 						width: "700px",
 						height: "500px",
 						title: "修改员工资料",
@@ -57,7 +57,7 @@
 			function _newEmployee(){
 				
 				juasp.openWin({
-					url: "${root}/org/employee/new",
+					url: "${ROOT}/org/employee/new",
 					width: "700px",
 					height: "500px",
 					title: "创建员工资料",

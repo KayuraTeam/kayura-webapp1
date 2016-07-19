@@ -37,7 +37,7 @@
 	juasp.removefile = function (frid, fileName){
 		
 		juasp.ajaxPost({
-			url: juasp.root + '/file/remove.json', 
+			url: juasp.APPROOT + '/file/remove.json', 
 			data: { id : frid, isBiz : 1 },
 			success: function(r) {
 				var t = $("#fc_" + frid);
@@ -78,7 +78,7 @@
 		if(opts.showlist) {
 			
 			juasp.ajaxPost({
-				url: juasp.root + '/file/find.json', 
+				url: juasp.APPROOT + '/file/find.json', 
 				data: {
 					bizId : opts.formData.bizId,
 					category : opts.formData.category,
@@ -172,10 +172,10 @@
 			var html = '<li id="fc_' + data.frId + '" class="webuploader-fileitems">' ;
 			
 			if(opts.showicon){
-				html += '<img class="webuploader-fileitem-icon" src="'+ juasp.root + '/res/images/types/' + juasp.getIconName(data.postfix)+ '.png">';
+				html += '<img class="webuploader-fileitem-icon" src="'+ juasp.ROOT + '/res/images/types/' + juasp.getIconName(data.postfix)+ '.png">';
 			}
 			
-			html += '<a href="' + juasp.root + '/file/get?id=' + data.frId + '" '
+			html += '<a href="' + juasp.APPROOT + '/file/get?id=' + data.frId + '" '
 			html += 'title="文件大小: ' + data.fileSize + '; 上传者: ' + data.uploaderName + ';">' + data.fileName + '</a>';
 			
 			if(opts.showinfos){
@@ -184,7 +184,7 @@
 			
 			if(opts.actions.remove && data.isUploader) {
 				html += '<a href="javascript:void(0)" onclick="juasp.removefile(\'' + data.frId + '\',\'' + data.fileName + '\')">'; 
-				html += '<img class="webuploader-fileitem-action-icon" src="'+ juasp.root + '/res/images/icons/clear.png"></a>';
+				html += '<img class="webuploader-fileitem-action-icon" src="'+ juasp.ROOT + '/res/images/icons/clear.png"></a>';
 			}
 			
 			html += '</li>';
@@ -246,8 +246,8 @@
 			tags : ''			// ● 自定义标签,使用逗号间隔.
 		},
 		innerOptions : {
-			swf: juasp.root + '/res/webuploader/Uploader.swf',
-			server: juasp.root + '/file/upload.json',
+			swf: juasp.ROOT + '/res/webuploader/Uploader.swf',
+			server: juasp.APPROOT + '/file/upload.json',
 			auto: true,						// 设置为 true 后，不需要手动调用上传，有文件选择即开始上传。
 			fileNumLimit: 999,				// 验证文件总数量, 超出则不允许加入队列。
 			fileSizeLimit: 100 * MB,		// 验证文件总大小是否超出限制, 超出则不允许加入队列。

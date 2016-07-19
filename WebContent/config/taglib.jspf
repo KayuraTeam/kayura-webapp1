@@ -4,7 +4,8 @@
 <%@ taglib prefix='sec' uri='http://www.springframework.org/security/tags'%>
 <%@ taglib prefix="k" uri="http://www.kayura.org/tags/jeasyui"%>
 <%
-	session.setAttribute("root", request.getContextPath());
+	session.setAttribute("ROOT", request.getContextPath());
+	
 	Cookie[] cookies = request.getCookies();
 	boolean themeReady = false;
 	if (cookies != null) {

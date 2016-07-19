@@ -9,7 +9,7 @@ var juasp = juasp || {};
 
 (function($, win) {
 	
-	var ROOTPATH = juasp.root;
+	var ROOTPATH = juasp.APPROOT;
 	
 	juasp = $.extend(juasp, {
 		

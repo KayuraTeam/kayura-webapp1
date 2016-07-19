@@ -20,7 +20,7 @@
 			function _init() {
 				
 				$('#tv').tree({
-					url : JBPMN.BPMNROOT + "bizform/tree?tenantId=${tenantId}",
+					url : JBPMN.BPMNROOT + "/bizform/tree?tenantId=${tenantId}",
 					method : "GET",
 					loadFilter : function(r) { 
 						return r;
@@ -31,7 +31,7 @@
 				});
 				
 				$('#tg').datagrid({
-					url: JBPMN.BPMNROOT + "model/find",
+					url: JBPMN.BPMNROOT + "/model/find",
 					method : "GET",
 					queryParams: {
 						keyword: $('#search').val()
@@ -40,7 +40,7 @@
 				
 				$("#import").uploader({
 					innerOptions : {
-						server: JBPMN.BPMNROOT + "model/import?tenantId=${tenantId}",
+						server: JBPMN.BPMNROOT + "/model/import?tenantId=${tenantId}",
 					},
 					onFinished : function (){
 						_search();
@@ -82,7 +82,7 @@
 				}
 				
 				juasp.openWin({
-					url: "${root}/bpm/proc/new?key=" + key,
+					url: "${ROOT}/bpm/proc/new?key=" + key,
 					width: "450px",
 					height: "300px",
 					title: "创建新流程",
@@ -98,7 +98,7 @@
 				
 				var row = $('#tg').datagrid("getSelected");
 				if(row != null){
-					win.open("${root}/modeler?modelId=" + row.id);
+					win.open("${ROOT}/modeler?modelId=" + row.id);
 				}
 			}
 			
@@ -110,7 +110,7 @@
 						function(r) {
 							if (r == true) {
 								juasp.ajaxPost({
-									url: JBPMN.BPMNROOT + "model/" + row.id + "/deploy", 
+									url: JBPMN.BPMNROOT + "/model/" + row.id + "/deploy", 
 									ajaxComplete : function(xhr) {
 										juasp.infoTips("流程布署成功。");
 										_search(); 
@@ -137,7 +137,7 @@
 							if (r == true) {
 								var id = type == 0 ? row.id : row.deploymentId;
 								juasp.ajaxDelete({
-									url: JBPMN.BPMNROOT + "model/" + id + "/" + type + "/remove",
+									url: JBPMN.BPMNROOT + "/model/" + id + "/" + type + "/remove",
 									ajaxComplete : function(xhr) {
 										juasp.infoTips("流程删除成功。");
 										_search();
@@ -166,7 +166,7 @@
 					}
 					
 					juasp.openWin({
-						url: "${root}/bpm/proc/form/start?id=" + row.id,
+						url: "${ROOT}/bpm/proc/form/start?id=" + row.id,
 						width: "550px",
 						height: "600px",
 						title: "启动流程",
@@ -186,7 +186,7 @@
 					status = selectedNode.attributes['type'];
 				}
 				
-				return "<a href='" + JBPMN.BPMNROOT + "model/" + row.id + "/res?status=" + status + "&type=1' target='_blank'>流程图XML</a>";					
+				return "<a href='" + JBPMN.BPMNROOT + "/model/" + row.id + "/res?status=" + status + "&type=1' target='_blank'>流程图XML</a>";					
 			}
 			
 			function _formaterDiagram(value, row, index){
@@ -196,7 +196,7 @@
 					status = selectedNode.attributes['type'];
 				}
 
-				return "<a href='" + JBPMN.BPMNROOT + "model/" + row.id + "/res?status=" + status + "&type=2' target='_blank'>图像PNG</a>";
+				return "<a href='" + JBPMN.BPMNROOT + "/model/" + row.id + "/res?status=" + status + "&type=2' target='_blank'>图像PNG</a>";
 			}
 			
 			return {
