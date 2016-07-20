@@ -77,7 +77,12 @@ var juasp = { };
 	 * 获取当前页面的顶层窗口对象.
 	 */
 	function _getTop() {
-		return win.top;
+		
+		if(win.top.juasp == undefined){
+			return win;
+		} else {
+			return win.top;
+		}
 	}
 
 	/**
@@ -269,9 +274,7 @@ var juasp = { };
 			ajaxBeforeSend: function() { },
 			ajaxComplete: function(xhr, textStatus) { },
 			ajaxDataFilter: function(data, type) { },
-			ajaxError: function(xhr, textStatus, errorThrown) {
-				console.log("url: " + opts.url +" . error: " + JSON.stringify(xhr));
-			},
+			ajaxError: function(xhr, textStatus, errorThrown) { },
 			success: function(r) {
 				_infoTips(r.message);
 			},
@@ -593,8 +596,8 @@ var juasp = { };
 	function _tips(type, content) {
 
 		if( _isNotEmpty(content) ) {
-			
-			if (win == win.top) {
+
+			if (win == _getTop()) {
 	
 				var tipQueue = _getTipQueue();
 				if (tipQueue.length > 0) {

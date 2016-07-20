@@ -47,6 +47,6 @@
 		</mvc:interceptor>
 	</mvc:interceptors>
 
-	<context:component-scan base-package="org.kayura.uasp.controller" />
+	<context:component-scan base-package="org.kayura.*.controller" />
 
 </beans:beans>

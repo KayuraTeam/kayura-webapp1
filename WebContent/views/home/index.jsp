@@ -96,6 +96,7 @@
 					<li><a href="###" onclick="juasp.openTab('流程定义', '${ROOT}/bpm/proc/list')" >流程定义</a></li>
 					<li><a href="###" onclick="juasp.openTab('模拟表单', '${ROOT}/mock/order/list')" >模拟表单</a></li>
 					<li><a href="###" onclick="juasp.openTab('实例监控', '${ROOT}/bpm/proc/inst')" >实例监控</a></li>
+					<li><a href="${ROOT}/formbuilder/mobile" target="_blank">手机表单</a></li>
 				</ul>
 			</k:sheet>
 			<k:sheet collapsed="false" collapsible="false" title="收藏功能" tools="[{iconCls:'icon-menu',handler:function(){alert('设置');}}]">
