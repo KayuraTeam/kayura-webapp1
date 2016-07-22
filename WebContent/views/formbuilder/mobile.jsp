@@ -35,7 +35,7 @@ select {
 </style>
 </head>
 <body>
-	<div class='fb-main'></div>
+	<div class='fb-main' style="margin-top:50px"></div>
 
 	<script src="${ROOT}/res/formbuilder/vendor/js/vendor.js"></script>
 	<script src="${ROOT}/res/formbuilder/formbuilder.js"></script>

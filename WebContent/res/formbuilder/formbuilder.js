@@ -352,8 +352,8 @@
       var $el, first_model, target;
       $el = $(e.currentTarget);
       target = $el.data('target');
-      //$el.closest('li').addClass('active').siblings('li').removeClass('active');
-      //$(target).addClass('active').siblings('.fb-tab-pane').removeClass('active');
+      $el.closest('li').addClass('active').siblings('li').removeClass('active');
+      $(target).addClass('active').siblings('.fb-tab-pane').removeClass('active');
       if (target !== '#editField') {
         this.unlockLeftWrapper();
       }
@@ -578,6 +578,7 @@
       mappings: {
         SIZE: 'field_options.size',
         UNITS: 'field_options.units',
+        NAME: 'name',
         LABEL: 'label',
         FIELD_TYPE: 'field_type',
         REQUIRED: 'required',
@@ -924,8 +925,11 @@ obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
 __p += '<input type=\'text\' data-rv-input=\'model.' +
+((__t = ( Formbuilder.options.mappings.NAME )) == null ? '' : __t) +
+'\' style=\'width:50%\' placeholder=\'添加该字段名\' /> 必填' +
+'<input type=\'text\' data-rv-input=\'model.' +
 ((__t = ( Formbuilder.options.mappings.LABEL )) == null ? '' : __t) +
-'\' /><textarea data-rv-input=\'model.' +
+'\' placeholder="添加该字段标题" /><textarea data-rv-input=\'model.' +
 ((__t = ( Formbuilder.options.mappings.DESCRIPTION )) == null ? '' : __t) +
 '\'  placeholder=\'添加该字段描述\'></textarea>';
 
