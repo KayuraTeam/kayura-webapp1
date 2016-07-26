@@ -17,12 +17,6 @@ body {
 	font-family: sans-serif;
 }
 
-.fb-main {
-	background-color: #fff;
-	border-radius: 5px;
-	min-height: 600px;
-}
-
 input[type=text] {
 	height: 32px;
 	margin-bottom: 3px;

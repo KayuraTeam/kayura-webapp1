@@ -4,7 +4,6 @@
 	<comment></comment>
 	<projects>
 		<project>kayura-cas-server</project>
-		<project>kayura-uasp</project>
 		<project>kayura-activiti</project>
 		<project>kayura-core</project>
 		<project>kayura-tags</project>
