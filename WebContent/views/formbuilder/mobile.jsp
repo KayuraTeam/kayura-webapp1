@@ -36,19 +36,16 @@ select {
 
 	<script>
 		$(function() {
-			fb = new Formbuilder({
+			var fb = new Formbuilder({
 				selector : '.fb-main',
 				bootstrapData : [ {
-					"label" : "您的站点地址?",
-					"field_type" : "website",
-					"required" : false,
-					"field_options" : {},
-					"cid" : "c1"
-				}, {
 					"label" : "请输入您的电话号码",
 					"field_type" : "text",
 					"required" : true,
-					"field_options" : {},
+					"field_options" : {
+						"size" : "large"
+					},
+					"name" : "myphone",
 					"cid" : "c6"
 				}, {
 					"label" : "是否为管理员?",
@@ -70,7 +67,7 @@ select {
 
 			fb.on('save', function(payload) {
 				console.log(payload);
-			})
+			});
 		});
 	</script>
 

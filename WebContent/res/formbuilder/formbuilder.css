@@ -30,11 +30,12 @@
 }
 
 .fb-main {
-	background-color: #fff;
+	background: #fff;
 	border-radius: 5px;
-	min-height: 700px;
+	min-height: 720px;
 	max-height: 937px;
 	max-width: 1120px;
+	min-width: 1120px;
 	margin: 0 auto;
 	padding: 0 0 0 0;
 	position: relative;
@@ -61,7 +62,7 @@
 	border-right: 1px solid #ddd;
 	margin-left: 320px;
 	margin-right: 320px;
-	min-height: 100%;
+	min-height: 720px;
 	overflow: hidden;
 	padding-left: 40px;
 	padding-right: 40px;
@@ -143,9 +144,9 @@
 }
 
 .fb-response-fields {
-	padding-bottom: 150px;
-	max-height: 680px;
-	margin-bottom:55px;
+	background: #f0eff4 none repeat scroll 0 0;
+	max-height: 580px;
+	margin-bottom:10px;
 	overflow: auto;
 }
 
@@ -158,9 +159,12 @@
 }
 
 .fb-field-wrapper {
-	cursor: pointer;
-	position: relative;
-	margin-bottom: 10px
+    background: #fff none repeat scroll 0 0;
+    border-color: #c8c8ca transparent;
+    border-style: solid;
+    border-width: 1px 0;
+    white-space: nowrap;
+    margin-top: 15px;
 }
 
 .fb-field-wrapper input {
@@ -238,8 +242,8 @@
 
 .fb-field-wrapper .subtemplate-wrapper {
 	border: 1px dashed transparent;
-	margin-bottom: 10px;
-	padding: 10px;
+	margin-bottom: 5px;
+	padding: 2px;
 	position: relative
 }
 

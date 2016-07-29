@@ -573,7 +573,7 @@
       BUTTON_CLASS: 'fb-button',
       HTTP_ENDPOINT: '',
       HTTP_METHOD: 'POST',
-      AUTOSAVE: true,
+      AUTOSAVE: false,
       CLEAR_FIELD_CONFIRM: false,
       mappings: {
         SIZE: 'field_options.size',
@@ -746,7 +746,7 @@
     edit: "<%= Formbuilder.templates['edit/size']() %><%= Formbuilder.templates['edit/min_max_length']() %>",
     addButton: "<span class=\"symbol\">&#182;</span> 段落",
     defaultAttributes: function(attrs) {
-      attrs.field_options.size = 'small';
+      attrs.field_options.size = 'large';
       return attrs;
     }
   });
@@ -803,11 +803,14 @@
     edit: "<%= Formbuilder.templates['edit/size']() %><%= Formbuilder.templates['edit/min_max_length']() %>",
     addButton: "<span class='symbol'><span class='fa fa-font'></span></span> 文本",
     defaultAttributes: function(attrs) {
-      attrs.field_options.size = 'large';
+      attrs.label = "文本框";
+      attrs.field_options = {
+		  size: 'large'
+      };
       return attrs;
     }
   });
-
+  
 }).call(this);
 
 (function() {
@@ -815,7 +818,13 @@
     order: 25,
     view: "<div class='input-line'>  <span class='hours'>    <input type=\"text\" />    <label>HH</label>  </span>  <span class='above-line'>:</span>  <span class='minutes'>    <input type=\"text\" />    <label>MM</label>  </span>  <span class='above-line'>:</span>  <span class='seconds'>    <input type=\"text\" />    <label>SS</label>  </span>  <span class='am_pm'>    <select>      <option>AM</option>      <option>PM</option>    </select>  </span></div>",
     edit: "",
-    addButton: "<span class=\"symbol\"><span class=\"fa fa-clock-o\"></span></span> 时间"
+    addButton: "<span class=\"symbol\"><span class=\"fa fa-clock-o\"></span></span> 时间",
+    defaultAttributes: function(attrs) {
+        attrs.field_options = {
+  		  label: "时间"
+        };
+        return attrs;
+      }
   });
 
 }).call(this);
