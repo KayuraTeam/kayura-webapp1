@@ -649,6 +649,24 @@
 
 }).call(this);
 
+/*  注册表单字段  */
+
+(function() {
+
+  Formbuilder.registerField('text', {
+    order: 0,
+    view: "<input type='text' class='rf-size-large' />",
+    edit: "<%= Formbuilder.templates['edit/min_max_length']() %>",
+    addButton: "<span class='symbol'><span class='fa fa-font'></span></span> 文本",
+    defaultAttributes: function(attrs) {
+      attrs.label = "文本框";
+      return attrs;
+    }
+  });
+  
+}).call(this);
+
+
 (function() {
   Formbuilder.registerField('address', {
     order: 50,
@@ -797,32 +815,13 @@
 }).call(this);
 
 (function() {
-  Formbuilder.registerField('text', {
-    order: 0,
-    view: "<input type='text' class='rf-size-<%= rf.get(Formbuilder.options.mappings.SIZE) %>' />",
-    edit: "<%= Formbuilder.templates['edit/size']() %><%= Formbuilder.templates['edit/min_max_length']() %>",
-    addButton: "<span class='symbol'><span class='fa fa-font'></span></span> 文本",
-    defaultAttributes: function(attrs) {
-      attrs.label = "文本框";
-      attrs.field_options = {
-		  size: 'large'
-      };
-      return attrs;
-    }
-  });
-  
-}).call(this);
-
-(function() {
   Formbuilder.registerField('time', {
     order: 25,
     view: "<div class='input-line'>  <span class='hours'>    <input type=\"text\" />    <label>HH</label>  </span>  <span class='above-line'>:</span>  <span class='minutes'>    <input type=\"text\" />    <label>MM</label>  </span>  <span class='above-line'>:</span>  <span class='seconds'>    <input type=\"text\" />    <label>SS</label>  </span>  <span class='am_pm'>    <select>      <option>AM</option>      <option>PM</option>    </select>  </span></div>",
     edit: "",
     addButton: "<span class=\"symbol\"><span class=\"fa fa-clock-o\"></span></span> 时间",
     defaultAttributes: function(attrs) {
-        attrs.field_options = {
-  		  label: "时间"
-        };
+    	attrs[Formbuilder.options.mappings.LABEL] = '时间';
         return attrs;
       }
   });
@@ -843,168 +842,198 @@
 
 }).call(this);
 
+/*  注册字段编辑器  */
+
 this["Formbuilder"] = this["Formbuilder"] || {};
 this["Formbuilder"]["templates"] = this["Formbuilder"]["templates"] || {};
 
 this["Formbuilder"]["templates"]["edit/base"] = function(obj) {
-obj || (obj = {});
-var __t, __p = '', __e = _.escape;
-with (obj) {
-__p +=
-((__t = ( Formbuilder.templates['edit/base_header']() )) == null ? '' : __t) +
-'' +
-((__t = ( Formbuilder.templates['edit/common']() )) == null ? '' : __t) +
-'' +
-((__t = ( Formbuilder.fields[rf.get(Formbuilder.options.mappings.FIELD_TYPE)].edit({rf: rf}) )) == null ? '' : __t) +
-'';
-
-}
-return __p
+	
+	obj || (obj = {});
+	var __t, __p = '', __e = _.escape;
+	
+	with (obj) {
+		__p +=
+		((__t = ( Formbuilder.templates['edit/base_header']() )) == null ? '' : __t) +
+		'' +
+		((__t = ( Formbuilder.templates['edit/common']() )) == null ? '' : __t) +
+		'' +
+		((__t = ( Formbuilder.fields[rf.get(Formbuilder.options.mappings.FIELD_TYPE)].edit({rf: rf}) )) == null ? '' : __t) +
+		'';
+	}
+	
+	return __p
 };
 
 this["Formbuilder"]["templates"]["edit/base_header"] = function(obj) {
-obj || (obj = {});
-var __t, __p = '', __e = _.escape;
-with (obj) {
-//__p += '<div class=\'fb-field-label\'>  <span data-rv-text="model.' +
-//((__t = ( Formbuilder.options.mappings.LABEL )) == null ? '' : __t) +
-//'"></span>  <code class=\'field-type\' data-rv-text=\'model.' +
-//((__t = ( Formbuilder.options.mappings.FIELD_TYPE )) == null ? '' : __t) +
-//'\'></code>  <span class=\'fa fa-arrow-right pull-right\'></span></div>';
-}
-return __p
+	
+	obj || (obj = {});
+	var __t, __p = '', __e = _.escape;
+	
+	with (obj) {
+	//__p += '<div class=\'fb-field-label\'>  <span data-rv-text="model.' +
+	//((__t = ( Formbuilder.options.mappings.LABEL )) == null ? '' : __t) +
+	//'"></span>  <code class=\'field-type\' data-rv-text=\'model.' +
+	//((__t = ( Formbuilder.options.mappings.FIELD_TYPE )) == null ? '' : __t) +
+	//'\'></code>  <span class=\'fa fa-arrow-right pull-right\'></span></div>';
+	}
+	
+	return __p
 };
 
 this["Formbuilder"]["templates"]["edit/base_non_input"] = function(obj) {
-obj || (obj = {});
-var __t, __p = '', __e = _.escape;
-with (obj) {
-__p +=
-((__t = ( Formbuilder.templates['edit/base_header']() )) == null ? '' : __t) +
-'' +
-((__t = ( Formbuilder.fields[rf.get(Formbuilder.options.mappings.FIELD_TYPE)].edit({rf: rf}) )) == null ? '' : __t) +
-'';
-
-}
-return __p
+	
+	obj || (obj = {});
+	var __t, __p = '', __e = _.escape;
+	
+	with (obj) {
+		__p +=
+		((__t = ( Formbuilder.templates['edit/base_header']() )) == null ? '' : __t) +
+		'' +
+		((__t = ( Formbuilder.fields[rf.get(Formbuilder.options.mappings.FIELD_TYPE)].edit({rf: rf}) )) == null ? '' : __t) +
+		'';
+	}
+	
+	return __p
 };
 
 this["Formbuilder"]["templates"]["edit/checkboxes"] = function(obj) {
-obj || (obj = {});
-var __t, __p = '', __e = _.escape;
-with (obj) {
-__p += '<label>  <input type=\'checkbox\' data-rv-checked=\'model.' +
-((__t = ( Formbuilder.options.mappings.REQUIRED )) == null ? '' : __t) +
-'\' />  必填项</label><!-- label>  <input type=\'checkbox\' data-rv-checked=\'model.' +
-((__t = ( Formbuilder.options.mappings.ADMIN_ONLY )) == null ? '' : __t) +
-'\' />  Admin only</label -->';
-
-}
-return __p
+	
+	obj || (obj = {});
+	var __t, __p = '', __e = _.escape;
+	
+	with (obj) {
+		__p += '<label>  <input type=\'checkbox\' data-rv-checked=\'model.' +
+		((__t = ( Formbuilder.options.mappings.REQUIRED )) == null ? '' : __t) +
+		'\' />  必填项</label><!-- label>  <input type=\'checkbox\' data-rv-checked=\'model.' +
+		((__t = ( Formbuilder.options.mappings.ADMIN_ONLY )) == null ? '' : __t) +
+		'\' />  Admin only</label -->';
+	}
+	
+	return __p
 };
 
 this["Formbuilder"]["templates"]["edit/common"] = function(obj) {
-obj || (obj = {});
-var __t, __p = '', __e = _.escape;
-with (obj) {
-__p += '<div class=\'fb-edit-section-header\'>标签</div><div class=\'fb-common-wrapper\'>  <div class=\'fb-label-description\'>    ' +
-((__t = ( Formbuilder.templates['edit/label_description']() )) == null ? '' : __t) +
-'  </div>  <div class=\'fb-common-checkboxes\'>    ' +
-((__t = ( Formbuilder.templates['edit/checkboxes']() )) == null ? '' : __t) +
-'  </div>  <div class=\'fb-clear\'></div></div>';
-
-}
-return __p
+	
+	obj || (obj = {});
+	var __t, __p = '', __e = _.escape;
+	
+	with (obj) {
+		__p += '<div class=\'fb-edit-section-header\'>标签</div><div class=\'fb-common-wrapper\'>  <div class=\'fb-label-description\'>    ' +
+		((__t = ( Formbuilder.templates['edit/label_description']() )) == null ? '' : __t) +
+		'  </div>  <div class=\'fb-common-checkboxes\'>    ' +
+		((__t = ( Formbuilder.templates['edit/checkboxes']() )) == null ? '' : __t) +
+		'  </div>  <div class=\'fb-clear\'></div></div>';
+	}
+	
+	return __p
 };
 
 this["Formbuilder"]["templates"]["edit/integer_only"] = function(obj) {
-obj || (obj = {});
-var __t, __p = '', __e = _.escape;
-with (obj) {
-__p += '<div class=\'fb-edit-section-header\'>仅数字</div><label>  <input type=\'checkbox\' data-rv-checked=\'model.' +
-((__t = ( Formbuilder.options.mappings.INTEGER_ONLY )) == null ? '' : __t) +
-'\' />  仅接收数字内容</label>';
-
-}
-return __p
+	
+	obj || (obj = {});
+	var __t, __p = '', __e = _.escape;
+	
+	with (obj) {
+		__p += '<div class=\'fb-edit-section-header\'>仅数字</div><label>  <input type=\'checkbox\' data-rv-checked=\'model.' +
+		((__t = ( Formbuilder.options.mappings.INTEGER_ONLY )) == null ? '' : __t) +
+		'\' />  仅接收数字内容</label>';
+	}
+	
+	return __p;
 };
 
 this["Formbuilder"]["templates"]["edit/label_description"] = function(obj) {
-obj || (obj = {});
-var __t, __p = '', __e = _.escape;
-with (obj) {
-__p += '<input type=\'text\' data-rv-input=\'model.' +
-((__t = ( Formbuilder.options.mappings.NAME )) == null ? '' : __t) +
-'\' style=\'width:50%\' placeholder=\'添加该字段名\' /> 必填' +
-'<input type=\'text\' data-rv-input=\'model.' +
-((__t = ( Formbuilder.options.mappings.LABEL )) == null ? '' : __t) +
-'\' placeholder="添加该字段标题" /><textarea data-rv-input=\'model.' +
-((__t = ( Formbuilder.options.mappings.DESCRIPTION )) == null ? '' : __t) +
-'\'  placeholder=\'添加该字段描述\'></textarea>';
-
-}
-return __p
+	
+	obj || (obj = {});
+	var __t, __p = '', __e = _.escape;
+	
+	with (obj) {
+		__p += '<input type=\'text\' data-rv-input=\'model.' +
+		((__t = ( Formbuilder.options.mappings.NAME )) == null ? '' : __t) +
+		'\' style=\'width:50%\' placeholder=\'添加该字段名\' /> 必填' +
+		'<input type=\'text\' data-rv-input=\'model.' +
+		((__t = ( Formbuilder.options.mappings.LABEL )) == null ? '' : __t) +
+		'\' placeholder="添加该字段标题" /><textarea data-rv-input=\'model.' +
+		((__t = ( Formbuilder.options.mappings.DESCRIPTION )) == null ? '' : __t) +
+		'\'  placeholder=\'添加该字段描述\'></textarea>';
+	}
+	
+	return __p;
 };
 
 this["Formbuilder"]["templates"]["edit/min_max"] = function(obj) {
-obj || (obj = {});
-var __t, __p = '', __e = _.escape;
-with (obj) {
-__p += '<div class=\'fb-edit-section-header\'>最小值 / 最大值</div>之上<input type="text" data-rv-input="model.' +
-((__t = ( Formbuilder.options.mappings.MIN )) == null ? '' : __t) +
-'" style="width: 30px" />&nbsp;&nbsp;之下<input type="text" data-rv-input="model.' +
-((__t = ( Formbuilder.options.mappings.MAX )) == null ? '' : __t) +
-'" style="width: 30px" />';
-
-}
-return __p
+	
+	obj || (obj = {});
+	var __t, __p = '', __e = _.escape;
+	
+	with (obj) {
+		__p += '<div class=\'fb-edit-section-header\'>最小值 / 最大值</div>之上<input type="text" data-rv-input="model.' +
+		((__t = ( Formbuilder.options.mappings.MIN )) == null ? '' : __t) +
+		'" style="width: 30px" />&nbsp;&nbsp;之下<input type="text" data-rv-input="model.' +
+		((__t = ( Formbuilder.options.mappings.MAX )) == null ? '' : __t) +
+		'" style="width: 30px" />';
+	}
+	
+	return __p;
 };
 
 this["Formbuilder"]["templates"]["edit/min_max_length"] = function(obj) {
-obj || (obj = {});
-var __t, __p = '', __e = _.escape;
-with (obj) {
-__p += '<div class=\'fb-edit-section-header\'>长度限制</div><div>最小: <input type="text" data-rv-input="model.' +
-((__t = ( Formbuilder.options.mappings.MINLENGTH )) == null ? '' : __t) +
-'" style="width: 30px" /></div><div>最大: <input type="text" data-rv-input="model.' +
-((__t = ( Formbuilder.options.mappings.MAXLENGTH )) == null ? '' : __t) +
-'" style="width: 30px" /></div><div>限制类型: <select data-rv-value="model.' +
-((__t = ( Formbuilder.options.mappings.LENGTH_UNITS )) == null ? '' : __t) +
-'" style="width: auto;">  <option value="characters">字节</option>  <option value="words">字符</option></select></div>';
-
-}
-return __p
+	
+	obj || (obj = {});
+	var __t, __p = '', __e = _.escape;
+	
+	with (obj) {
+		__p += '<div class=\'fb-edit-section-header\'>长度限制</div><div>最小: <input type="text" data-rv-input="model.' +
+		((__t = ( Formbuilder.options.mappings.MINLENGTH )) == null ? '' : __t) +
+		'" style="width: 30px" /></div><div>最大: <input type="text" data-rv-input="model.' +
+		((__t = ( Formbuilder.options.mappings.MAXLENGTH )) == null ? '' : __t) +
+		'" style="width: 30px" /></div><div>限制类型: <select data-rv-value="model.' +
+		((__t = ( Formbuilder.options.mappings.LENGTH_UNITS )) == null ? '' : __t) +
+		'" style="width: auto;">  <option value="characters">字节</option>  <option value="words">字符</option></select></div>';
+	}
+	
+	return __p;
 };
 
 this["Formbuilder"]["templates"]["edit/options"] = function(obj) {
-obj || (obj = {});
-var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
-function print() { __p += __j.call(arguments, '') }
-with (obj) {
-__p += '<div class=\'fb-edit-section-header\'>选项</div>';
- if (typeof includeBlank !== 'undefined'){ ;
-__p += '  <label>    <input type=\'checkbox\' data-rv-checked=\'model.' +
-((__t = ( Formbuilder.options.mappings.INCLUDE_BLANK )) == null ? '' : __t) +
-'\' />    Include blank  </label>';
- } ;
-__p += '<div class=\'option\' data-rv-each-option=\'model.' +
-((__t = ( Formbuilder.options.mappings.OPTIONS )) == null ? '' : __t) +
-'\'>  <input type="checkbox" class=\'js-default-updated\' data-rv-checked="option:checked" />  <input type="text" data-rv-input="option:label" class=\'option-label-input\' />  <a class="js-add-option ' +
-((__t = ( Formbuilder.options.BUTTON_CLASS )) == null ? '' : __t) +
-'" title="添加新项"><i class=\'fa fa-plus-circle\'></i></a>  <a class="js-remove-option ' +
-((__t = ( Formbuilder.options.BUTTON_CLASS )) == null ? '' : __t) +
-'" title="移除此项"><i class=\'fa fa-minus-circle\'></i></a></div>';
- if (typeof includeOther !== 'undefined'){ ;
-__p += '  <label>    <input type=\'checkbox\' data-rv-checked=\'model.' +
-((__t = ( Formbuilder.options.mappings.INCLUDE_OTHER )) == null ? '' : __t) +
-'\' />    包含 "其它"  </label>';
- } ;
-__p += '<div class=\'fb-bottom-add\'>  <a class="js-add-option ' +
-((__t = ( Formbuilder.options.BUTTON_CLASS )) == null ? '' : __t) +
-'">添加项</a></div>';
-
-}
-return __p
+	
+	obj || (obj = {});
+	var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
+	
+	function print() { __p += __j.call(arguments, '') }
+	
+	with (obj) {
+		__p += '<div class="fb-edit-section-header">选项</div>';
+		
+		if (typeof includeBlank !== 'undefined') {
+			__p += '  <label>    <input type="checkbox" data-rv-checked="model.' +
+			((__t = ( Formbuilder.options.mappings.INCLUDE_BLANK )) == null ? '' : __t) +
+			'" />    包含空白项  </label>';
+		}
+		
+		__p += '<div class="option" data-rv-each-option="model.' +
+		((__t = ( Formbuilder.options.mappings.OPTIONS )) == null ? '' : __t) + '"> ' +
+		'<input type="checkbox" class="js-default-updated" data-rv-checked="option:checked" /> ' + 
+		'<input type="text" data-rv-input="option:value" class="option-value-input" />  ' + 
+		'<input type="text" data-rv-input="option:label" class="option-label-input" />  ' + 
+		'<a class="js-add-option ' +
+		((__t = ( Formbuilder.options.BUTTON_CLASS )) == null ? '' : __t) +
+		'" title="添加新项"><i class="fa fa-plus-circle"></i></a>  <a class="js-remove-option ' +
+		((__t = ( Formbuilder.options.BUTTON_CLASS )) == null ? '' : __t) +
+		'" title="移除此项"><i class="fa fa-minus-circle"></i></a></div>';
+		
+		if (typeof includeOther !== 'undefined'){
+			__p += '  <label>    <input type="checkbox" data-rv-checked="model.' +
+			((__t = ( Formbuilder.options.mappings.INCLUDE_OTHER )) == null ? '' : __t) +
+			'" />    包含 "其它"  </label>';
+		}
+		
+		__p += '<div class="fb-bottom-add">  <a class="js-add-option ' +
+		((__t = ( Formbuilder.options.BUTTON_CLASS )) == null ? '' : __t) +
+		'">添加项</a></div>';
+	}
+	return __p;
 };
 
 this["Formbuilder"]["templates"]["edit/size"] = function(obj) {
