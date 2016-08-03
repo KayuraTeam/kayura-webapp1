@@ -47,21 +47,6 @@ select {
 					},
 					"name" : "myphone",
 					"cid" : "c6"
-				}, {
-					"label" : "是否为管理员?",
-					"field_type" : "radio",
-					"required" : true,
-					"field_options" : {
-						"options" : [ {
-							"label" : "是",
-							"checked" : false
-						}, {
-							"label" : "否",
-							"checked" : false
-						} ],
-						"include_other_option" : true
-					},
-					"cid" : "c10"
 				}]
 			});
 
