@@ -93,7 +93,8 @@
 				<ul>
 					<li><a href="###" onclick="juasp.openTab('任务中心', '${ROOT}/bpm/task/center')" >任务中心</a></li>
 					<li><a href="###" onclick="juasp.openTab('表单定义', '${ROOT}/bpm/biz/list')" >表单定义</a></li>
-					<li><a href="###" onclick="juasp.openTab('流程定义', '${ROOT}/bpm/proc/list')" >流程定义</a></li>
+					<li><a href="###" onclick="juasp.openTab('表单设计', '${ROOT}/bpm/form/list')" >表单设计</a></li>
+					<li><a href="###" onclick="juasp.openTab('流程设计', '${ROOT}/bpm/proc/list')" >流程设计</a></li>
 					<li><a href="###" onclick="juasp.openTab('模拟表单', '${ROOT}/mock/order/list')" >模拟表单</a></li>
 					<li><a href="###" onclick="juasp.openTab('实例监控', '${ROOT}/bpm/proc/inst')" >实例监控</a></li>
 					<li><a href="${ROOT}/formbuilder/mobile" target="_blank">手机表单</a></li>

@@ -587,6 +587,7 @@
         ADMIN_ONLY: 'admin_only',
         OPTIONS: 'field_options.options',
         FORMAT: 'field_options.format',
+        ACTIONNAME: 'field_options.action_name',
         STARTLABEL: 'field_options.start_label',
         ENDLABEL: 'field_options.end_label',
         INCLUDE_OTHER: 'field_options.include_other_option',
@@ -780,11 +781,12 @@
 	// 清单项开始 table-end
 	Formbuilder.registerField('table-end', {
 		order: 56,
-		view: "",
-		edit: "",
+		view: "<div style='text-align: center;'><input class='fb-button' type=\"button\" value=\"<%= rf.get(Formbuilder.options.mappings.ACTIONNAME) %>\" > </div>",
+		edit: "<%= Formbuilder.templates['edit/table-action']() %>",
 		addButton: "<span class=\"symbol\"><span class=\"fa fa-table\"></span></span> 清单结束",
 		defaultAttributes: function(attrs) {
 			attrs[Formbuilder.options.mappings.LABEL] = '-----清单结束-----';
+			attrs[Formbuilder.options.mappings.ACTIONNAME] = '添加新项';
 			return attrs;
 		}
 	})
@@ -892,11 +894,27 @@ this["Formbuilder"]["templates"]["edit/date-format"] = function(obj) {
 	with (obj) {
 		__p += '<div class="fb-edit-section-header">日期格式</div><label> ' + 
 		'<input type="text" data-rv-input="model.' +
-		((__t = ( Formbuilder.options.mappings.PLACEHOLDER )) == null ? '' : __t) +
-		'" placeholder="yyy-MM-dd hh:mm:ss" />';
+		((__t = ( Formbuilder.options.mappings.FORMAT )) == null ? '' : __t) +
+		'" placeholder="yyyy-MM-dd hh:mm:ss" />';
 	}
 	
 	return __p;
+};
+
+
+this["Formbuilder"]["templates"]["edit/table-action"] = function(obj) {
+	
+	obj || (obj = {});
+	var __t, __p = '', __e = _.escape;
+	
+	with (obj) {
+		__p += '<div class="fb-edit-section-header">按钮名称</div><label> ' + 
+		'<input type="text" data-rv-input="model.' +
+		((__t = ( Formbuilder.options.mappings.ACTIONNAME )) == null ? '' : __t) +
+		'" placeholder="请输入按钮名称" />';
+	}
+	
+	return __p
 };
 
 // daterange

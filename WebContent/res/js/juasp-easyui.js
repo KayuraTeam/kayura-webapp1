@@ -156,7 +156,7 @@
 
 	$.extend($.fn.combobox.defaults, {
 		valueField : "value",
-		textField : "lable",
+		textField : "label",
 		groupField : "group",
 		method : "POST",
 		filter : function(q, row) {
