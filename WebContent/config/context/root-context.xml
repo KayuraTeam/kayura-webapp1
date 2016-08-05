@@ -2,7 +2,9 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<!-- 扫描指定包内被标注的对象，并创建SpringBean对象. -->
@@ -15,6 +17,16 @@
 	<bean class="org.kayura.web.easyui.EasyUISupport" />
 	<bean class="org.kayura.spring.SpringBeanManager" />
 	<bean class="com.fasterxml.jackson.databind.ObjectMapper" />
+	
+	<!-- 配置表单视图模板 -->
+	<bean class="org.kayura.formbuilder.vo.FormViewTempletes">
+		<property name="templetes">
+			<map key-type="java.lang.String" value-type="java.lang.String">
+				<entry key="s" value="views/formbuilder/templete/simple" />
+				<entry key="d" value="views/formbuilder/templete/dingtalk" />
+			</map>
+		</property>
+	</bean>
 	
 	<bean id="storageExecutor" class="org.kayura.uasp.provider.FileUploadProviderImpl">
 		<property name="minSpace" value="${fileUpload.minSpace}" />

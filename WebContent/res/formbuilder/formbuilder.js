@@ -516,9 +516,7 @@
       this.formSaved = true;
       this.saveFormButton.attr('disabled', true).text(Formbuilder.options.dict.ALL_CHANGES_SAVED);
       this.collection.sort();
-      payload = JSON.stringify({
-        fields: this.collection.toJSON()
-      });
+      payload = JSON.stringify(this.collection.toJSON());
       if (Formbuilder.options.HTTP_ENDPOINT) {
         this.doAjaxSave(payload);
       }

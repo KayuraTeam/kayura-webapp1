@@ -28,7 +28,7 @@
 				});
 				
 				$('#tg').datagrid({
-					url: JBPMN.BPMNROOT + "/model/find",
+					url: juasp.RESTROOT + "/form/model/find",
 					method : "GET",
 					queryParams: {
 						keyword: $('#search').val()
@@ -39,40 +39,39 @@
 			
 			function _clickNode(node){
 				
-				var key = node.attributes['key'];
 				selectedNode = node;
 				_search();
 			}
 			
 			function _search(){
 				
-				var key = "", type="";
+				var formKey = "", status="";
 				if(selectedNode != null){
-					key = selectedNode.attributes['key'];
-					type = selectedNode.attributes['type'];
+					formKey = selectedNode.attributes['code'];
+					status = selectedNode.attributes['type'];
 				}
 				
 				$('#tg').datagrid('unselectAll');
 				$('#tg').datagrid('load', {
 					"tenantId" : "${tenantId}",
-					"key" : key,
-					"type" : type,
+					"formKey" : formKey,
+					"status" : status,
 					"keyword" : $('#search').val()
 				});
 			}
 			
 			function _create(){
 				
-				var key = "";
+				var formKey = "";
 				if(selectedNode != null){
-					key = selectedNode.attributes['key'];
+					formKey = selectedNode.code;
 				}
 				
 				juasp.openWin({
-					url: "${ROOT}/bpm/proc/new?key=" + key,
+					url: "${ROOT}/formbuilder/" + formKey + "/create",
 					width: "450px",
 					height: "300px",
-					title: "创建新流程",
+					title: "创建新表单",
 					onClose : function(r){
 						if(r.result == 1){
 							_search();
@@ -85,7 +84,7 @@
 				
 				var row = $('#tg').datagrid("getSelected");
 				if(row != null){
-					win.open("${ROOT}/modeler?modelId=" + row.id);
+					win.open("${ROOT}/formbuilder/mobile?modelId=" + row.modelId);
 				}
 			}
 			
@@ -214,22 +213,19 @@
 		<k:dock region="center" border="false">
 			<k:datagrid id="tg" fit="true" rownumbers="true"
 				pagination="true" pageSize="10" singleSelect="true" striped="true"
-				toolbar="#tb" idField="id">
+				toolbar="#tb" idField="modelId">
 				<k:column field="ck" checkbox="true" />
-				<k:column field="name" title="流程名称" />
-				<k:column field="key" title="流程键" />
-				<k:column field="category" title="流程类别" />
+				<k:column field="formKey" title="表单键" />
+				<k:column field="code" title="编码" />
+				<k:column field="title" title="标题" />
+				<k:column field="description" title="描述" />
 				<k:column field="version" title="版本号" />
-				<k:column field="resourceName" title="流程定义" formatter="jctx.formaterProcess" />
-				<k:column field="diagramResourceName" title="流程图像" formatter="jctx.formaterDiagram" />
 			</k:datagrid>
 			<div id="tb">
-				<k:linkbutton id="import" iconCls="icon-add" plain="true" text="导入流程" />
 				<k:linkbutton id="create" iconCls="icon-add" plain="true" text="创建流程" onClick="jctx.create()" />
 				<k:linkbutton id="edit" iconCls="icon-edit" plain="true" text="编辑流程" onClick="jctx.edit()" />
 				<k:linkbutton id="remove" iconCls="icon-remove" plain="true" text="删除流程" onClick="jctx.remove()" />
 				<k:linkbutton id="deploy" iconCls="icon-add" plain="true" text="布署流程" onClick="jctx.deploy()" />
-				<k:linkbutton id="start" iconCls="icon-add" plain="true" text="启动流程" onClick="jctx.start()" />
 				<div style="float: right;">
 					<k:searchbox id="search" prompt="搜索：流程名称" width="220" height="25" searcher="jctx.search" />
 				</div>

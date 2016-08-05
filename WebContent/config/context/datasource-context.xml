@@ -18,6 +18,10 @@
 	<!-- 扫描 Activiti 数据访问包 -->
 	<mybatis-spring:scan base-package="org.kayura.activiti.repository"
 		factory-ref="sqlSessionFactory" />
+		
+	<!-- 扫描 FormBuilder 数据访问包 -->
+	<mybatis-spring:scan base-package="org.kayura.formbuilder.repository"
+		factory-ref="sqlSessionFactory" />
 
 	<!-- 引用外部属性定义文件 -->
 	<bean id="sysProperties"
