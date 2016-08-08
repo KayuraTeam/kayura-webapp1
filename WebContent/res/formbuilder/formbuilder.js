@@ -682,7 +682,7 @@
 	
 	// 日期
 	Formbuilder.registerField('date', {
-		order: 2,
+		order: 10,
 		view: "<input type=\"text\" class='rf-size-large' />",
 		edit: "<%= Formbuilder.templates['edit/date-format']() %>",
 		addButton: "<span class=\"symbol\"><span class=\"fa fa-calendar\"></span></span> 日期",
@@ -693,9 +693,22 @@
 		}
 	});
 	
+	// 日期时间
+	Formbuilder.registerField('datetime', {
+		order: 11,
+		view: "<input type=\"text\" class='rf-size-large' />",
+		edit: "<%= Formbuilder.templates['edit/date-format']() %>",
+		addButton: "<span class=\"symbol\"><span class=\"fa fa-calendar\"></span></span> 日期时间",
+		defaultAttributes: function(attrs) {
+			attrs[Formbuilder.options.mappings.LABEL] = '日期时间';
+			attrs[Formbuilder.options.mappings.FORMAT] = 'yyyy-MM-dd HH:mm:ss';
+			return attrs;
+		}
+	});
+	
 	// 日期范围
 	Formbuilder.registerField('daterange', {
-		order: 3,
+		order: 12,
 		view: "<div class='input-line'><label><%= rf.get(Formbuilder.options.mappings.STARTLABEL) %></label><input type=\"text\" /></div><div class='input-line'><label><%= rf.get(Formbuilder.options.mappings.ENDLABEL) %></label><input type=\"text\" /></div>",
 		edit: "<%= Formbuilder.templates['edit/daterange']() %> <%= Formbuilder.templates['edit/date-format']() %>",
 		addButton: "<span class=\"symbol\"><span class=\"fa fa-calendar\"></span></span> 日期范围",
@@ -721,7 +734,7 @@
 	
 	// 金额
 	Formbuilder.registerField('money', {
-	    order: 45,
+	    order: 31,
 	    view: "<input type='text' /><% if (units = rf.get(Formbuilder.options.mappings.UNITS)) { %>  <%= units %><% } %>",
 	    edit: "<%= Formbuilder.templates['edit/units']() %>",
 	    addButton: "<span class=\"symbol\"><span class=\"fa fa-usd\"></span></span> 金额",
@@ -734,7 +747,7 @@
 
 	// 单选框
 	Formbuilder.registerField('select', {
-		order: 15,
+		order: 40,
 		view: "<% for (i in (rf.get(Formbuilder.options.mappings.OPTIONS) || [])) { %>  <div>    <label class='fb-option'>      <input type='radio' <%= rf.get(Formbuilder.options.mappings.OPTIONS)[i].checked && 'checked' %> onclick=\"javascript: return false;\" />      <%= rf.get(Formbuilder.options.mappings.OPTIONS)[i].label %>    </label>  </div><% } %><% if (rf.get(Formbuilder.options.mappings.INCLUDE_OTHER)) { %>  <div class='other-option'>    <label class='fb-option'>      <input type='radio' />      其它    </label>    <input type='text' />  </div><% } %>",
 		edit: "<%= Formbuilder.templates['edit/options']({ includeOther: true }) %>",
 		addButton: "<span class=\"symbol\"><span class=\"fa fa-circle-o\"></span></span> 单选框",
@@ -750,7 +763,7 @@
 	
 	// 复选框
 	Formbuilder.registerField('multiselect', {
-		order: 10,
+		order: 41,
 		view: "<% for (i in (rf.get(Formbuilder.options.mappings.OPTIONS) || [])) { %>  <div>    <label class='fb-option'>      <input type='checkbox' <%= rf.get(Formbuilder.options.mappings.OPTIONS)[i].checked && 'checked' %> onclick=\"javascript: return false;\" />      <%= rf.get(Formbuilder.options.mappings.OPTIONS)[i].label %>    </label>  </div><% } %><% if (rf.get(Formbuilder.options.mappings.INCLUDE_OTHER)) { %>  <div class='other-option'>    <label class='fb-option'>      <input type='checkbox' />      其它    </label>    <input type='text' />  </div><% } %>",
 		edit: "<%= Formbuilder.templates['edit/options']({ includeOther: true }) %>",
 		addButton: "<span class=\"symbol\"><span class=\"fa fa-square-o\"></span></span> 复选框",
@@ -766,7 +779,7 @@
 
 	// 清单项开始 table-begin
 	Formbuilder.registerField('table-begin', {
-		order: 55,
+		order: 50,
 		view: "",
 		edit: "",
 		addButton: "<span class=\"symbol\"><span class=\"fa fa-table\"></span></span> 清单开始",
@@ -778,7 +791,7 @@
 	
 	// 清单项开始 table-end
 	Formbuilder.registerField('table-end', {
-		order: 56,
+		order: 51,
 		view: "<div style='text-align: center;'><input class='fb-button' type=\"button\" value=\"<%= rf.get(Formbuilder.options.mappings.ACTIONNAME) %>\" > </div>",
 		edit: "<%= Formbuilder.templates['edit/table-action']() %>",
 		addButton: "<span class=\"symbol\"><span class=\"fa fa-table\"></span></span> 清单结束",
@@ -791,7 +804,7 @@
 	
 	// 图片 
 	Formbuilder.registerField('photo', {
-		order: 25,
+		order: 60,
 		view: "<input type='text' class='rf-size-large' />",
 		edit: "",
 		addButton: "<span class=\"symbol\"><span class=\"fa fa-picture-o\"></span></span> 图片",
@@ -803,7 +816,7 @@
 	
 	// 附件 
 	Formbuilder.registerField('attachment', {
-		order: 26,
+		order: 61,
 		view: "<input type='text' class='rf-size-large' />",
 		edit: "",
 		addButton: "<span class=\"symbol\"><span class=\"fa fa-file-o\"></span></span> 附件",

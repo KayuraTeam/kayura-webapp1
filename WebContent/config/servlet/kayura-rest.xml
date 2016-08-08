@@ -6,6 +6,7 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
+	<context:component-scan base-package="org.kayura.activiti.editor.rest" />
 	<context:component-scan base-package="org.kayura.formbuilder.rest" />
 
 	<bean id="multipartResolver"

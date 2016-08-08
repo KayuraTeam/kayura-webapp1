@@ -80,7 +80,9 @@
 .icon-flag{
 	background:url('icons/flag.png') no-repeat center center;
 }
-
+.icon-preview{
+	background:url('icons/preview.png') no-repeat center center;
+}
 .icon-home{
 	background:url('icons/home.png') no-repeat center center;
 }

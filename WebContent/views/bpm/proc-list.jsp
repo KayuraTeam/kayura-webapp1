@@ -20,7 +20,7 @@
 			function _init() {
 				
 				$('#tv').tree({
-					url : JBPMN.BPMNROOT + "/bizform/tree?tenantId=${tenantId}",
+					url : JBPMN.BPMNROOT + "${RESTROOT}/bizform/tree?tenantId=${tenantId}",
 					method : "GET",
 					loadFilter : function(r) { 
 						return r;

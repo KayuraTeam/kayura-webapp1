@@ -15,7 +15,7 @@
 			function _init() {
 				
 				$('#tg').datagrid({
-					url: JBPMN.BPMNROOT + "/bizform/find",
+					url: "${RESTROOT}/bizform/find",
 					queryParams: {
 						tenantId : "${tenantId}",
 						keyword : $('#search').val()
@@ -74,7 +74,7 @@
 						function(r) {
 							if (r == true) {
 								juasp.ajaxDelete({
-									url: JBPMN.BPMNROOT + "/bizform/" + row.id + "/remove", 
+									url: "${RESTROOT}/bizform/" + row.id + "/remove", 
 									data: { },
 									ajaxComplete : function(xhr){
 										juasp.infoTips(row.displayName + " 删除完成。");

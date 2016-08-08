@@ -64,7 +64,7 @@
 				
 				var formKey = "";
 				if(selectedNode != null){
-					formKey = selectedNode.code;
+					formKey = selectedNode.attributes['code'];
 				}
 				
 				juasp.openWin({
@@ -80,11 +80,34 @@
 				});
 			}
 			
-			function _edit(){
+			function _preview(){
+
+				var row = $('#tg').datagrid("getSelected");
+				if(row != null){
+					// /form/build/{formKey}/{code}/{view}
+					juasp.openWin({
+						url: "${ROOT}/form/preview/" + row.formKey + "/" + row.code + "/dd",
+						width: "550px",
+						height: "750px",
+						title: "创建新表单",
+						onClose : function(r){
+							if(r.result == 1){
+								_search();
+							}
+						}
+					});
+				}
+			}
+			
+			function _design(){
 				
 				var row = $('#tg').datagrid("getSelected");
 				if(row != null){
-					win.open("${ROOT}/formbuilder/mobile?modelId=" + row.modelId);
+					if(row.type == 1){
+						win.open("${ROOT}/formbuilder/mobile?modelId=" + row.modelId);
+					} else {
+						alert("跳转至PC表单设计器(尚未开发)");
+					}
 				}
 			}
 			
@@ -164,39 +187,17 @@
 					});
 				}
 			}
-			
-			function _formaterProcess(value, row, index){
-				
-				var status = "";
-				if(selectedNode != null){
-					status = selectedNode.attributes['type'];
-				}
-				
-				return "<a href='" + JBPMN.BPMNROOT + "/model/" + row.id + "/res?status=" + status + "&type=1' target='_blank'>流程图XML</a>";					
-			}
-			
-			function _formaterDiagram(value, row, index){
 
-				var status = "";
-				if(selectedNode != null){
-					status = selectedNode.attributes['type'];
-				}
-
-				return "<a href='" + JBPMN.BPMNROOT + "/model/" + row.id + "/res?status=" + status + "&type=2' target='_blank'>图像PNG</a>";
-			}
-			
 			return {
 				
 				init: _init,
 				create: _create,
-				edit: _edit,
+				design: _design,
 				remove: _remove,
 				search: _search,
 				deploy: _deploy,
 				start: _start,
-				
-				formaterProcess: _formaterProcess,
-				formaterDiagram: _formaterDiagram
+				preview: _preview,
 			};
 			
 		}(jQuery, window));
@@ -218,14 +219,16 @@
 				<k:column field="formKey" title="表单键" />
 				<k:column field="code" title="编码" />
 				<k:column field="title" title="标题" />
+				<k:column field="typeName" title="平台类型" />
 				<k:column field="description" title="描述" />
 				<k:column field="version" title="版本号" />
 			</k:datagrid>
 			<div id="tb">
-				<k:linkbutton id="create" iconCls="icon-add" plain="true" text="创建流程" onClick="jctx.create()" />
-				<k:linkbutton id="edit" iconCls="icon-edit" plain="true" text="编辑流程" onClick="jctx.edit()" />
-				<k:linkbutton id="remove" iconCls="icon-remove" plain="true" text="删除流程" onClick="jctx.remove()" />
-				<k:linkbutton id="deploy" iconCls="icon-add" plain="true" text="布署流程" onClick="jctx.deploy()" />
+				<k:linkbutton id="create" iconCls="icon-add" plain="true" text="创建模型" onClick="jctx.create()" />
+				<k:linkbutton id="edit" iconCls="icon-design" plain="true" text="设计模型" onClick="jctx.design()" />
+				<k:linkbutton id="remove" iconCls="icon-remove" plain="true" text="删除模型" onClick="jctx.remove()" />
+				<k:linkbutton id="deploy" iconCls="icon-flag" plain="true" text="布署模型" onClick="jctx.deploy()" />
+				<k:linkbutton id="deploy" iconCls="icon-preview" plain="true" text="生成预览" onClick="jctx.preview()" />
 				<div style="float: right;">
 					<k:searchbox id="search" prompt="搜索：流程名称" width="220" height="25" searcher="jctx.search" />
 				</div>
