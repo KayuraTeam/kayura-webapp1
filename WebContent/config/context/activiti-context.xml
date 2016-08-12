@@ -34,11 +34,11 @@
 				<bean class="org.kayura.activiti.persistence.UserEntityManagerFactory" />
 			</list>
 		</property>
-		<property name="eventListeners">
+<!-- 		<property name="eventListeners">
 			<list>
 				<bean class="org.kayura.activiti.listener.LoggerEventListener" />
 			</list>
-		</property>
+		</property> -->
 		<property name="expressionManager">
 			<bean class="org.kayura.activiti.spring.SpringExpressionManager">
 				<property name="processEngineConfiguration" ref="processEngineConfiguration" />

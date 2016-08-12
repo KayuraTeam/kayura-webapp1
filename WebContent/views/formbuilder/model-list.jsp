@@ -86,7 +86,25 @@
 				if(row != null){
 					// /form/build/{formKey}/{code}/{view}
 					juasp.openWin({
-						url: "${ROOT}/form/preview/" + row.formKey + "/" + row.code + "/dd",
+						url: "${ROOT}/form/preview/" + row.modelId + "/dd",
+						width: "550px",
+						height: "750px",
+						title: "创建新表单",
+						onClose : function(r){
+							if(r.result == 1){
+								_search();
+							}
+						}
+					});
+				}
+			}
+			
+			function _play(){
+				
+				var row = $('#tg').datagrid("getSelected");
+				if(row != null){
+					juasp.openWin({
+						url: "${ROOT}/form/start/" + row.modelId + "/dd",
 						width: "550px",
 						height: "750px",
 						title: "创建新表单",
@@ -115,11 +133,11 @@
 				
 				var row = $('#tg').datagrid("getSelected");
 				if(row != null){
-					juasp.confirm("<b>是否确认将该流程</b> 【" + row.name + " 】个布署为运行状态。</b>", 
+					juasp.confirm("<b>是否确认将该流程</b> 【" + row.title + " 】个布署为运行状态。</b>", 
 						function(r) {
 							if (r == true) {
 								juasp.ajaxPost({
-									url: JBPMN.BPMNROOT + "/model/" + row.id + "/deploy", 
+									url: juasp.RESTROOT + "/form/model/" + row.modelId + "/deploy", 
 									ajaxComplete : function(xhr) {
 										juasp.infoTips("流程布署成功。");
 										_search(); 
@@ -136,19 +154,13 @@
 				var row = $('#tg').datagrid("getSelected");
 				if(row != null){
 					
-					var type = "";
-					if(selectedNode != null){
-						type = selectedNode.attributes['type'];
-					}
-					
-					juasp.confirm("是否确认流程定义【" + row.name + "】记录。注意：启动的实例也将一并删除。", 
+					juasp.confirm("是否确认表单模型【" + row.title + "】记录。", 
 						function(r) {
 							if (r == true) {
-								var id = type == 0 ? row.id : row.deploymentId;
 								juasp.ajaxDelete({
-									url: JBPMN.BPMNROOT + "/model/" + id + "/" + type + "/remove",
+									url: juasp.RESTROOT + "/form/model/" + row.modelId + "/remove",
 									ajaxComplete : function(xhr) {
-										juasp.infoTips("流程删除成功。");
+										juasp.infoTips("表单模型删除成功。");
 										_search();
 									}
 								});
@@ -198,6 +210,7 @@
 				deploy: _deploy,
 				start: _start,
 				preview: _preview,
+				play: _play
 			};
 			
 		}(jQuery, window));
@@ -229,6 +242,7 @@
 				<k:linkbutton id="remove" iconCls="icon-remove" plain="true" text="删除模型" onClick="jctx.remove()" />
 				<k:linkbutton id="deploy" iconCls="icon-flag" plain="true" text="布署模型" onClick="jctx.deploy()" />
 				<k:linkbutton id="deploy" iconCls="icon-preview" plain="true" text="生成预览" onClick="jctx.preview()" />
+				<k:linkbutton id="play" iconCls="icon-play" plain="true" text="运行表单" onClick="jctx.play()" />
 				<div style="float: right;">
 					<k:searchbox id="search" prompt="搜索：流程名称" width="220" height="25" searcher="jctx.search" />
 				</div>

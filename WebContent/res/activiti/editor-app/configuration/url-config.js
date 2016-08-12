@@ -20,27 +20,26 @@ var KISBPM = KISBPM || {};
 
 KISBPM.URL = {
 
-    getModel: function(modelId) {
-        return ACTIVITI.CONFIG.contextRoot + '/workflow/service/model/' + modelId + '/json';
-    },
-
     getStencilSet: function() {
         return ACTIVITI.CONFIG.contextRoot + '/editor-app/stencilset.json';
     },
 
+    getModel: function(modelId) {
+        return ACTIVITI.CONFIG.contextRoot + '/workflow/service/model/' + modelId + '/json';
+    },
     putModel: function(modelId) {
         return ACTIVITI.CONFIG.contextRoot + '/workflow/service/model/' + modelId + '/save';
     },
     
     getAssign: function(){
-    	return ACTIVITI.CONFIG.contextRoot + "/workflow/assign/find";
+    	return ACTIVITI.CONFIG.contextRoot + "/rest/assign/find";
     },
     
     getGroup: function(){
-    	return ACTIVITI.CONFIG.contextRoot + "/workflow/group/find";
+    	return ACTIVITI.CONFIG.contextRoot + "/rest/group/find";
     },
     
     getUser: function(){
-    	return ACTIVITI.CONFIG.contextRoot + "/workflow/user/find";
+    	return ACTIVITI.CONFIG.contextRoot + "/rest/user/find";
     }
 };

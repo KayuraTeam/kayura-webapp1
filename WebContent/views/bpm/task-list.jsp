@@ -79,24 +79,27 @@
 			}
 		}
 		
-		function _formaterTitle(value, row, index){
-			return row.name + "(" + row.variables['reason'] + ")";
+		function _formaterTitle(value, row, index) {
+			var title = row.variables['title'];
+			if (typeof title != undefined) {
+				return row.name + "(" + row.variables['title'] + ")";
+			}
+			return row.name;
 		}
-		
+
 		return {
-			init: _init,
-			search: _search,
-			taskclaim: _taskclaim,
-			taskunclaim: _taskunclaim,
-			taskread: _taskread,
-			formaterActions: _formaterActions,
-			formaterTitle: _formaterTitle
+			init : _init,
+			search : _search,
+			taskclaim : _taskclaim,
+			taskunclaim : _taskunclaim,
+			taskread : _taskread,
+			formaterActions : _formaterActions,
+			formaterTitle : _formaterTitle
 		};
-		
+
 	}(jQuery, window));
 
-	$(function(){
+	$(function() {
 		jtasklist.init();
 	});
-	
 </script>

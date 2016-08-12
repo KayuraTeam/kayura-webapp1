@@ -612,7 +612,7 @@
     "properties" : [ {
       "id" : "multiinstance_cardinality",
       "type" : "String",
-      "title" : "基数(多实例)",
+      "title" : "环循基数",
       "value" : "",
       "description" : "Define the cardinality of multi instance.",
       "popular" : true
@@ -622,7 +622,7 @@
     "properties" : [ {
       "id" : "multiinstance_collection",
       "type" : "String",
-      "title" : "集合(多实例)",
+      "title" : "集合",
       "value" : "",
       "description" : "Define the collection for the multi instance.",
       "popular" : true
@@ -632,7 +632,7 @@
     "properties" : [ {
       "id" : "multiinstance_variable",
       "type" : "String",
-      "title" : "元素变量(多实例)",
+      "title" : "元素变量",
       "value" : "",
       "description" : "Define the element variable for the multi instance.",
       "popular" : true
@@ -642,7 +642,7 @@
     "properties" : [ {
       "id" : "multiinstance_condition",
       "type" : "String",
-      "title" : "完成条件(多实例)",
+      "title" : "完成条件",
       "value" : "",
       "description" : "Define the completion condition for the multi instance.",
       "popular" : true

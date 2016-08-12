@@ -7,12 +7,8 @@
 	</configSuffixes>
 	<enableImports><![CDATA[false]]></enableImports>
 	<configs>
-		<config>config/activiti-modeler.xml</config>
-		<config>config/activiti-rest.xml</config>
 	</configs>
 	<autoconfigs>
-		<config>config/root-context.xml</config>
-		<config>config/servlet-context.xml</config>
 	</autoconfigs>
 	<configSets>
 	</configSets>

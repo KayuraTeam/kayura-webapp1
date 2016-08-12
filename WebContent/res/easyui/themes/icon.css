@@ -67,6 +67,9 @@
 .icon-more{
 	background:url('icons/more.png') no-repeat center center;
 }
+.icon-play{
+	background:url('icons/play.png') no-repeat center center;
+}
 
 .icon-copy{
 	background:url('icons/copy.png') no-repeat center center;
